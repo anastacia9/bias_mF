@@ -1,0 +1,38 @@
+import numpy
+import pandas
+
+df_bias = pandas.read_csv('ensemble_fe_1458_30C.csv', index_col=0)
+df = pandas.read_csv('tAI_1620_YRC_diff_d.csv', index_col=0)
+count = 0
+for i in list(df.index):
+ if i not in list(df_bias.index):
+  df = df.drop(i)
+  count += 1
+
+mygenes  = numpy.array(list(df.index))
+numgenes = len(mygenes)
+mymedian = numpy.array(list(df.T.median()))
+mysort   = numpy.argsort(mymedian)
+
+rna0 = mygenes[ mysort[   0:241 ] ]
+rna1 = mygenes[ mysort[ 241:482 ] ]
+rna2 = mygenes[ mysort[ 482:723 ] ]
+rna3 = mygenes[ mysort[ 723:964 ] ]
+rna4 = mygenes[ mysort[ 964:1205] ]
+rna5 = mygenes[ mysort[1205:1447] ]
+
+df0 = df_bias * 1
+df1 = df_bias * 1
+df2 = df_bias * 1
+df3 = df_bias * 1
+df4 = df_bias * 1
+df5 = df_bias * 1
+
+mylist = list(df_bias.index)
+count = 0
+for i in mylist:
+ if i not in rna5:
+  df5 = df5.drop(i)
+  count += 1
+
+df5.to_csv('ensemble_fe_242_30C_lowG5.csv')

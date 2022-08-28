@@ -1,0 +1,35 @@
+import pandas
+import numpy
+
+dfT = pandas.read_csv('projectfiles/data/yeast_bias_global/tAI/tAI_1447_YRC_diff_d.csv', index_col=0)
+dfG = pandas.read_csv('projectfiles/data/yeast_stability_global/ensemble_deltaG/ensemble_fe_1447_30C.csv', index_col=0)
+dfS = pandas.DataFrame(index=list(dfG.index))
+
+dfS['median_tAI']    = numpy.array([ numpy.median(dfT.iloc[i]) for i in range(1447) ])
+dfS['median_deltaG'] = numpy.array([ numpy.median(dfG.iloc[i]) for i in range(1447) ]) / 1000
+
+dfS['dlogPPR_dtAI']    = 0.4469  + (-2.29818*dfS['median_deltaG'])
+dfS['dlogPPR_ddeltaG'] = 0.47295 + (-2.29818*dfS['median_tAI'])
+
+dfS.to_csv('median_deltaG_tAI_1447.csv')
+bins = list(numpy.arange(-1.5, 11, 0.05))
+b = plt.hist(dfS['dlogPPR_dtAI'], bins=bins)
+a = plt.hist(dfS['dlogPPR_ddeltaG'], bins=bins)
+plt.show()
+
+## slope tAI           =  0.4469
+## slope ensembleG     =  0.47295
+## slope tAI:ensembleG = -2.29818
+
+## Let's say our model is logPPR = aT + bG + cTG, where T is tAI, G is deltaG, and a, b, and c are the fixed effects slopes.
+## The partial derivative of logPPR with respect to T equals a + cG
+## The partial derivative of logPPR with respect to G equals b + cT
+
+
+
+For each gene, we can find the median (or mean) deltaG value.
+If this median value is v for gene 1, then the partial derivative of logPPR with respect to T equals a + cv for gene 1. And this result can go in that histogram, along with the results for the rest of the genes.
+
+
+dfS.to_csv('median_deltaG_tAI_1447.csv')
+

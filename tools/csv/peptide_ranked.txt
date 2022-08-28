@@ -1,0 +1,56 @@
+import pandas
+import numpy
+
+df_pep = pandas.read_csv('n_peptides_sum_1636_d.csv', index_col=0)
+df_tai = pandas.read_csv('tAI_1620_YRC_diff_d.csv', index_col=0)
+df_del = pandas.read_csv('ensemble_fe_1458_30C.csv', index_col=0)
+df_ppr = pandas.read_csv('n_PPR_1636_d.csv', index_col=0)
+
+my_int = set(df_tai.index).intersection(df_del.index)
+
+my_drp = set(df_pep.index)-my_int
+df_pep = df_pep.drop(my_drp)
+df_ppr = df_ppr.drop(my_drp)
+my_drp = set(df_tai.index)-my_int
+df_tai = df_tai.drop(my_drp)
+my_drp = set(df_del.index)-my_int
+df_del = df_del.drop(my_drp)
+
+my_med = df_pep.T.median()
+my_gne = numpy.array(list(my_med.index))
+my_arg = numpy.argsort(my_med)
+my_srt = my_gne[my_arg]
+
+my_low = my_srt[0:723]
+my_med = my_srt[723-361:723+362]
+my_hih = my_srt[723:]
+
+drp_4med = list(set(df_pep.index) - set(my_med))
+
+df_tai_low = df_tai.drop(my_hih)
+df_del_low = df_del.drop(my_hih)
+df_ppr_low = df_ppr.drop(my_hih)
+#df_tai_low.to_csv('tAI_723_YRC_diff_d_lowpeptide.csv')
+#df_del_low.to_csv('ensemble_fe_723_30C_lowpeptide.csv')
+#df_ppr_low.to_csv('n_PPR_723_d_lowpeptide.csv')
+
+df_tai_med = df_tai.drop(drp_4med)
+df_del_med = df_del.drop(drp_4med)
+df_ppr_med = df_ppr.drop(drp_4med)
+#df_tai_med.to_csv('tAI_723_YRC_diff_d_medpeptide.csv')
+#df_del_med.to_csv('ensemble_fe_723_30C_medpeptide.csv')
+#df_ppr_med.to_csv('n_PPR_723_d_medpeptide.csv')
+
+df_tai_hih = df_tai.drop(my_low)
+df_del_hih = df_del.drop(my_low)
+df_ppr_hih = df_ppr.drop(my_low)
+#df_tai_hih.to_csv('tAI_724_YRC_diff_d_highpeptide.csv')
+#df_del_hih.to_csv('ensemble_fe_724_30C_highpeptide.csv')
+#df_ppr_hih.to_csv('n_PPR_724_d_highpeptide.csv')
+
+
+
+
+
+
+

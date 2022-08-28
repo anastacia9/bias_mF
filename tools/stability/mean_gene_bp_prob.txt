@@ -1,0 +1,23 @@
+import os
+import numpy
+import pandas
+import numpy
+
+# Read in UTR and CDS lengths file.
+df_lengths = pandas.read_csv('UTR5_CDS_UTR3_lengths_1461.csv', index_col=0)
+
+# Define strains.
+strains = numpy.array(['273614N', '378604X', 'BC187', 'DBVPG1106', 'DBVPG1373', 'DBVPG6765', 'L_1374', 'NCYC361', 'SK1', 'UWOPS05_217_3', 'UWOPS05_227_2', 'UWOPS83_787_3', 'UWOPS87_2421', 'Y12', 'Y55', 'YJM975', 'YJM978', 'YJM981', 'YPS128', 'YPS606', 'YS2', 'YS9'])
+
+# Define gene names.
+df = pandas.read_csv(strains[0] + '_bp_prob_1461_30C.csv')
+genes = numpy.array(list(df.columns))
+
+# Define .csv file with mean gene base-pair probabilities.
+df_mean = pandas.DataFrame(columns=strains, index = genes)
+
+for strain in strains:
+ df = pandas.read_csv(strain + '_bp_prob_1461_30C.csv')
+ for gene in genes:
+  length = df_lengths.sum(axis=1)[gene]
+  df_mean[strain][gene] = sum(df[gene])/length

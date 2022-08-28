@@ -1,0 +1,67 @@
+# Calculate of D+3' region and R+L region tAI.
+
+import dltAI_mod
+import tai_seq
+import pandas
+import os
+import numpy
+
+myindex = ['273614N', '378604X', 'BC187', 'DBVPG1106', 'DBVPG1373', 'DBVPG6765', 'L_1374', 'NCYC361', 'SK1', 'UWOPS05_217_3', 'UWOPS05_227_2', 'UWOPS83_787_3', 'UWOPS87_2421', 'Y12', 'Y55', 'YJM975', 'YJM978', 'YJM981', 'YPS128', 'YPS606', 'YS2', 'YS9']
+df_d3 = pandas.DataFrame(columns = myindex)
+df_Lr = pandas.DataFrame(columns = myindex)
+
+path = 'projectfiles9\data\yeast_CDS\YRC_strains\with_PPRdata_ordered'
+directory = os.fsencode(path)
+files = os.listdir(directory)
+num_files = len(files)
+
+count = 0
+for file in files:
+ filename = os.fsdecode(file)
+ data = dltAI_mod.dltAI(path + '\\' + filename, 'domains_total_Pfam_added_1554.csv', 'tAI') 
+ num_genes = len(data[0])
+ d3_tAI = numpy.zeros(num_genes)
+ Lr_tAI = numpy.zeros(num_genes)
+ for i in range(0, num_genes):
+  if data[7][i]: # check for non-overlapping domain predictions
+   if (len(''.join(data[7][i])) or len(data[10][i])) and (len(''.join(data[8][i])) or len(data[9][i])) != 0: # make sure that D+3' and L+5' sequences actually exist
+    d  = ''.join(data[7][i])       # join domain sequence(s)
+    d3 = ''.join([d, data[10][i]]) # join d and 3' sequence
+    L  = ''.join(data[8][i])       # join linker sequence(s)
+    Lr = ''.join([L, data[9][i]])  # join L and ramp sequence
+    d3_tAI[i] = tai_seq.tAI_seq(d3, 'tAI')
+    Lr_tAI[i] = tai_seq.tAI_seq(Lr, 'tAI')
+ df_d3[myindex[count]] = d3_tAI
+ df_Lr[myindex[count]] = Lr_tAI
+ count += 1
+
+df_d3.index = data[0]
+df_Lr.index = data[0]
+
+df_d3 = df_d3[(df_d3.T != 0).any()] #check for 0 values
+df_Lr = df_Lr[(df_Lr.T != 0).any()]
+
+drops_d30 = numpy.where( numpy.array(list(df_d3.apply(pandas.Series.nunique, axis=1))) == 0 )[0] # any rows of nan's?
+drops_d31 = numpy.where( numpy.array(list(df_d3.apply(pandas.Series.nunique, axis=1))) == 1 )[0] # any rows with identical values?
+drops_Lr0 = numpy.where( numpy.array(list(df_Lr.apply(pandas.Series.nunique, axis=1))) == 0 )[0] # any rows of nan's?
+drops_Lr1 = numpy.where( numpy.array(list(df_Lr.apply(pandas.Series.nunique, axis=1))) == 1 )[0] # any rows with identical values?
+
+drops_premature_stops = ['YLR345W', 'YGR100W', 'YHR163W', 'YPR091C', 'YDR009W', 'YHR089C', 'YDR150W', 'YNR069C', 'YML072C', 'YBR096W', 'YNR017W', 'YCR098C', 'YDL122W', 'YKR103W', 'YOL060C', 'YPR041W']
+drops_total = numpy.array(list( set(drops_d30) | set(drops_d31) | set(drops_Lr0) | set(drops_Lr1) ))
+
+index_names = numpy.array(list(df_d3.index))
+drops_names = index_names[drops_total]
+df_d3 = df_d3.drop(drops_names)
+df_Lr = df_Lr.drop(drops_names)
+df_d3 = df_d3.drop(drops_premature_stops)
+df_Lr = df_Lr.drop(drops_premature_stops)
+
+
+df_d3.to_csv('tAI_domain_3_1092_YRC_d.csv')
+df_Lr.to_csv('tAI_linker_ramp_1092_YRC_d.csv')
+
+
+
+
+
+

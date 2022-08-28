@@ -1,0 +1,29 @@
+import mRNA_sectionG
+import pandas
+import numpy
+
+a = mRNA_sectionG.mRNA_sectionG("riboG", 'UTR5_CDS_UTR3_lengths_1461.csv', 'domains_total_Pfam_added_1092.csv', 'projectfiles95\data\yeast_RNAfold\\273614N_fold.txt', 'projectfiles95\data\yeast_RNAeval\\273614N_eval.txt')
+keep_UT5 = numpy.where(a[9]  != 1e6)[0]
+keep_CDS = numpy.where(a[10] != 1e6)[0]
+keep_UT3 = numpy.where(a[11] != 1e6)[0]
+
+strains = numpy.array(['273614N', '378604X', 'BC187', 'DBVPG1106', 'DBVPG1373', 'DBVPG6765', 'L_1374', 'NCYC361', 'SK1', 'UWOPS05_217_3', 'UWOPS05_227_2', 'UWOPS83_787_3', 'UWOPS87_2421', 'Y12', 'Y55', 'YJM975', 'YJM978', 'YJM981', 'YPS128', 'YPS606', 'YS2', 'YS9'])
+genes = a[0]
+df_gene = pandas.DataFrame(columns = strains, index=genes)
+df_UT5  = pandas.DataFrame(columns = strains, index=genes[keep_UT5])
+df_CDS  = pandas.DataFrame(columns = strains, index=genes[keep_CDS])
+df_UT3  = pandas.DataFrame(columns = strains, index=genes[keep_UT3])
+
+for strain in strains:
+ a = mRNA_sectionG.mRNA_sectionG("riboG", 'UTR5_CDS_UTR3_lengths_1461.csv', 'domains_total_Pfam_added_1092.csv', 'projectfiles95\data\yeast_RNAfold\\' + strain + '_fold.txt', 'projectfiles95\data\yeast_RNAeval\\' + strain + '_eval.txt')
+ df_gene[strain] = a[8]
+ df_UT5[strain]  = a[9][keep_UT5]
+ df_CDS[strain]  = a[10][keep_CDS]
+ df_UT3[strain]  = a[11][keep_UT3]
+ print(strain)
+ 
+drops = numpy.where(df_gene.T.nunique() == 1)[0]
+gene_names = numpy.array(list(df_gene.index))[drops]
+df_gene.drop(gene_names)
+
+

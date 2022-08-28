@@ -1,0 +1,52 @@
+---
+title: "logPPR as a function of linker + 5' tAI, ensemble deltaG, and their interaction"
+date: "08/28/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r libraries, message=FALSE, warning=FALSE}
+library(car)
+library(lme4)
+library(reshape2)
+```
+
+
+#### logPPR ~ linker5_tAI + deltaG + linker5_tAI:deltaG {.tabset .tabset-dropdown}
+##### Menu
+##### Define the response variable, logPPR.
+```{r response_variable0}
+response <- read.csv("C:/Users/anastacia/Desktop/n_PPR_983_d.csv")
+dataset <- melt(response, id.vars = "gene", variable.name = "strain", value.name = "PPR")
+dataset$logPPR <- log(dataset$PPR)
+```
+
+##### Read in tAI Data
+```{r Ftai}
+explanatory0 <- read.csv('C:/Users/anastacia/Desktop/tAI_linker_ramp_983_YRC_d.csv')
+explanatory0 <- melt(explanatory0, id.vars = "gene", variable.name = "strain", value.name = "tAI")
+dataset$tAI = explanatory0$tAI
+```
+
+##### Read in deltaG Data
+```{r FdelG}
+explanatory1 <- read.csv('C:/Users/anastacia/Desktop/ensemble_fe_983_30C.csv')
+explanatory1 <- melt(explanatory1, id.vars = "gene", variable.name = "strain", value.name = "ensembleG")
+dataset$ensembleG = explanatory1$ensembleG/10000 #divide resulting slope by 10 to get units of 1/(Mcal per mol)
+```
+
+##### Summary Results of Mixed Model
+``` {r F1}
+lmm0 <- lmer(logPPR ~ tAI + ensembleG + tAI:ensembleG + (0+tAI|gene) + (1|gene), data=dataset, REML = FALSE, control = lmerControl(optimizer="bobyqa", optCtrl=list(maxfun=1e5)))
+summary(lmm0)
+```
+
+##### 95% Confidence Intervals
+``` {r F1confint}
+confint(lmm0, parm="tAI", level=0.95)
+confint(lmm0, parm="ensembleG", level=0.95)
+confint(lmm0, parm="tAI:ensembleG", level=0.95)
+```

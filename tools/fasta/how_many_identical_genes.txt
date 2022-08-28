@@ -1,0 +1,56 @@
+# Which genes are identical across strains?
+
+import pandas
+import numpy
+import os
+
+# Define names of genes in question. Genes must be organized in alphabetical order.
+df = pandas.read_csv('tAI_cTE_200.csv', index_col=0)
+gene_names = list(df.index)
+gene_names = ['>' + name for name in gene_names]
+
+# Define directory with gene sequence fasta files of strains in question. Gene names in fasta files must be the same and organized in alphabetical order.
+path = 'projectfiles9\data\yeast_CDS\YRC_strains\with_PPRdata_ordered'
+directory = os.fsencode(path)
+files = os.listdir(directory)
+num_files = len(files)
+
+# Define empty array of arrays. This will be where gene sequences of the genes in question will be stored.
+gene_seqs = [None] * num_files
+
+# Find indices of genes in question in genome.
+filename = "\\" + os.fsdecode(files[0])
+genome = numpy.genfromtxt(path+filename, dtype='str', delimiter='\n')
+genome_names = genome[0::2]
+genome_seqs = genome[1::2]
+num_genome_seqs = len(genome_seqs)
+index = numpy.where(numpy.in1d(genome_names, gene_names))[0]
+
+# Loop through each strain's gene sequence file and extract needed gene sequences.
+count = 0
+for file in files:
+ filename = "\\" + os.fsdecode(file)
+ data = numpy.genfromtxt(path+filename, dtype='str', delimiter='\n')
+ data = data[1::2]
+ gene_seqs[count] = data[index]
+ count += 1
+
+# Loop through collected gene sequences and find which are identical across strains.
+identical = [None]*num_seqs
+count = 0
+for i in range(0, len(gene_names)):
+ single_gene_seqs = [gene_seqs[j][i] for j in range(0, num_files)]
+ if len(set(single_gene_seqs)) == 1:
+  print(i)
+  
+
+
+single_gene_seqs = [None] * num_files
+count = 0
+for i in range(0, len(gene_names)):
+ for j in range(0, num_files):
+  single_gene_seqs[j] = gene_seqs[j][i]
+  if len(set(single_gene_seqs)) == 0:
+   same_genes[go] = gene_names[count]
+
+

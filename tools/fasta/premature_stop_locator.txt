@@ -1,0 +1,34 @@
+Premature stops?
+
+import os
+import numpy
+import pandas
+
+# Define path to strain sequence files.
+path = 'projectfiles9\data\yeast_CDS\YRC_strains\with_PPRdata_ordered'
+directory = os.fsencode(path)
+files = os.listdir(directory)
+num_files = len(files)
+
+# Find preemies.
+my_dict = dict()
+preemies = set()
+stops = ['TGA', 'TAG', 'TAA']
+for file in files:
+ filename = os.fsdecode(file)
+ data = numpy.genfromtxt(path + '\\' + filename, dtype='str', delimiter='\n')
+ seqs = data[1::2]
+ count = 0
+ for seq in seqs:
+  codons = [ seq[i:i+3] for i in range(0, len(seq), 3) ]
+  firststop = numpy.where(numpy.in1d(codons, stops) == True)[0]
+  if firststop.size:
+   if firststop[0] != len(codons)-1: # if a stop codon is not at the end of the sequence
+    preemies.add(data[2*count][1:])
+    my_dict[data[2*count][1:]] = firststop[0]
+  count += 1
+
+df = pandas.read_csv('n_PPR_1636_d.csv', index_col=0)
+genes_1636 = set(list(df.index))
+
+myintersection = preemies.intersection(genes_1636)

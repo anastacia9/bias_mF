@@ -1,0 +1,83 @@
+---
+title: "logPPR as a function of mfe deltaG and mean bp probability (synonymous SNPs only)"
+date: "11/06/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r libraries, message=FALSE, warning=FALSE}
+library(car)
+library(lme4)
+library(reshape2)
+```
+
+
+#### logPPR ~ mfe deltaG {.tabset .tabset-dropdown}
+##### Menu
+##### Define the response variable, logPPR.
+```{r response_variable0}
+response <- read.csv("C:/Users/anastacia/Desktop/n_PPR_176_d.csv")
+dataset  <- melt(response, id.vars = "gene", variable.name = "strain", value.name = "PPR")
+dataset$logPPR <- log(dataset$PPR)
+```
+
+##### Read in deltaG Data
+```{r FdelG}
+explanatory1 <- read.csv('C:/Users/anastacia/Desktop/optimal_struc_mfe_176_30C.csv')
+explanatory1 <- melt(explanatory1, id.vars = "gene", variable.name = "strain", value.name = "mfeG")
+dataset$mfeG = explanatory1$mfeG/10000 #divide resulting slope by 10 to get units of 1/(Mcal per mol)
+```
+
+##### Summary Results of Mixed Model
+``` {r F1}
+lmm0 <- lmer(logPPR ~ mfeG + (1+mfeG|gene), data=dataset, REML = FALSE, control = lmerControl(optimizer="bobyqa", optCtrl=list(maxfun=1e5)))
+summary(lmm0)
+```
+
+##### 95% Confidence Interval of Mixed Model
+``` {r F1confint}
+confint(lmm0, parm="mfeG", level=0.95)
+```
+
+##### Fixed Effects Slope Significance Results
+``` {r F2}
+lmm00 <- lmer(logPPR ~ (1+mfeG|gene), data=dataset, REML = FALSE, control = lmerControl(optimizer="bobyqa", optCtrl=list(maxfun=1e5)))
+anova(lmm0, lmm00)
+```
+
+
+#### logPPR ~ bp prob {.tabset .tabset-dropdown}
+##### Menu
+##### Define the response variable, logPPR.
+```{r response_variable0X}
+response <- read.csv("C:/Users/anastacia/Desktop/n_PPR_176_d.csv")
+dataset  <- melt(response, id.vars = "gene", variable.name = "strain", value.name = "PPR")
+dataset$logPPR <- log(dataset$PPR)
+```
+
+##### Read in deltaG Data
+```{r FdelGX}
+explanatory1 <- read.csv('C:/Users/anastacia/Desktop/mean_gene_bp_prob_176_30C.csv')
+explanatory1 <- melt(explanatory1, id.vars = "gene", variable.name = "strain", value.name = "prob")
+dataset$prob = explanatory1$prob*10
+```
+
+##### Summary Results of Mixed Model
+``` {r F1X}
+lmm0 <- lmer(logPPR ~ prob + (0+prob|gene), data=dataset, REML = FALSE, control = lmerControl(optimizer="bobyqa", optCtrl=list(maxfun=1e5)))
+summary(lmm0)
+```
+
+##### 95% Confidence Interval of Mixed Model
+``` {r F1confintX}
+confint(lmm0, parm="prob", level=0.95)
+```
+
+##### Fixed Effects Slope Significance Results
+``` {r F2X}
+lmm00 <- lmer(logPPR ~ (0+prob|gene), data=dataset, REML = FALSE, control = lmerControl(optimizer="bobyqa", optCtrl=list(maxfun=1e5)))
+anova(lmm0, lmm00)
+```

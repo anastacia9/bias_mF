@@ -1,0 +1,13 @@
+import pandas
+
+df = pandas.read_csv('peptides_sum_1637.csv', index_col=0)
+df = df / df.sum(axis=0)
+
+total = df.sum(axis=0) + 53e6 - 1
+
+df *= total
+
+
+
+
+

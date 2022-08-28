@@ -1,0 +1,19 @@
+response <- log(read.csv('n_PPR_185_diff.csv', header=TRUE, row.names=1))
+myvar = apply(response,1,var)
+mymean = apply(response,1,mean)
+
+scatter.smooth(mymean, myvar, span=.1, col='red',
+               xlab='Average gene logPPR value',
+               ylab='Variance of gene logPPR value',
+               main='\nAverage gene logPPR value vs. variance in gene logPPR values\nplotted for 185 genes identical at the amino acid level,\nbut different at the nucleotide level across 22 yeast strains\n')
+
+explanatory <- read.csv('tAI_cTE_185_diff.csv', header=TRUE, row.names=1)
+myvar1 = apply(explanatory,1,var)
+mymean1 = apply(explanatory,1,mean)
+
+scatter.smooth(mymean1, myvar1, span=.1, col='purple',
+               xlab='Average gene StAI value',
+               ylab='Variance of gene StAI value',
+               main='\nAverage gene StAI value vs. variance in gene StAI values\nplotted for 185 genes identical at the amino acid level,\nbut different at the nucleotide level across 22 yeast strains\n')
+
+

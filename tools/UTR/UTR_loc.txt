@@ -1,0 +1,21 @@
+import pandas
+import numpy
+df = pandas.read_csv('UTR_loc_full.csv', index_col=1)
+num_genes = len(df.index)
+
+drop_genes = numpy.zeros(num_genes, dtype='int')
+count = 0
+for i in range(0, num_genes):
+ if df.iloc[i]['UTR5'] == 'Not available ' or df.iloc[i]['UTR3'] == 'Not available ':
+  drop_genes[count] = i
+  count += 1
+
+drop_genes = drop_genes[:count]
+
+gene_names = numpy.array(list(df.index))
+drop_genes_names = gene_names[drop_genes]
+
+df = df.drop(drop_genes_names)
+
+df.to_csv('UTR_loc_4419.csv')
+

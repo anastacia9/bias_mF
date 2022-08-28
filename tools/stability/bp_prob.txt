@@ -1,0 +1,53 @@
+# For each strain, create a .csv file with gene RNAfold predictions.
+
+import numpy
+import pandas
+import os
+
+# Define path to RNAfold results. Define strains.
+strains = numpy.array(['273614N', '378604X', 'BC187', 'DBVPG1106', 'DBVPG1373', 'DBVPG6765', 'L_1374', 'NCYC361', 'SK1', 'UWOPS05_217_3', 'UWOPS05_227_2', 'UWOPS83_787_3', 'UWOPS87_2421', 'Y12', 'Y55', 'YJM975', 'YJM978', 'YJM981', 'YPS128', 'YPS606', 'YS2', 'YS9'])
+num_strains = len(strains)
+
+# Define gene files with base pair probability information.
+benchmark_dir = strains[0]
+files_strain = numpy.array(os.listdir(benchmark_dir))
+num_files = len(files_strain)
+keeps = numpy.zeros(num_files, dtype='int')
+for file in range(0, num_files):
+ if 'dp.ps' in files_strain[file]:
+  keeps[file] = 1
+
+index = numpy.where(keeps == 1)[0]
+files_strain = files_strain[index]
+num_genes = len(files_strain)
+
+strain_num = 0
+for strain in strains:
+ path_RNAfold_strain = strain
+ df = pandas.DataFrame(index=range(0,15015),columns=range(0,num_genes), dtype='float')
+ gene_names = numpy.ndarray(num_genes, dtype='U15' )
+ count = 0
+ for file in files_strain:
+  file_index0 = file.find('Y')
+  file_index1 = file.find('_')
+  gene_names[count] = file[file_index0:file_index1]
+  data = numpy.genfromtxt(path_RNAfold_strain + '\\A' + str(strain_num) + file[2:], delimiter = '\n', dtype = 'str')
+  ubox_index = numpy.where(data == '%start of base pair probability data')[0][0]
+  probs = numpy.zeros(15015, dtype='float')
+  for i in range(ubox_index+1, len(data)):
+   line = data[i]
+   if 'ubox' in line:
+    line_split = line.split(' ')
+    first = numpy.int( line_split[0] )
+    probs[first] += numpy.float( line_split[2] )**2
+    second = numpy.int( line_split[1] )
+    probs[second] += numpy.float( line_split[2] )**2
+   else:
+    break
+  df[count] = probs
+  count += 1
+ df.columns = gene_names
+ df = df.drop(0)
+ df.to_csv(strain + '_bp_prob_1461_30C.csv', index=False)
+ strain_num += 1
+

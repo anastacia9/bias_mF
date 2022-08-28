@@ -1,0 +1,26 @@
+import numpy
+
+letter = 'A'
+
+path = 'projectfiles95\data\yeast_mRNA'
+strains = numpy.array(['273614N', '378604X', 'BC187', 'DBVPG1106', 'DBVPG1373', 'DBVPG6765', 'L_1374', 'NCYC361', 'SK1', 'UWOPS05_217_3', 'UWOPS05_227_2', 'UWOPS83_787_3', 'UWOPS87_2421', 'Y12', 'Y55', 'YJM975', 'YJM978', 'YJM981', 'YPS128', 'YPS606', 'YS2', 'YS9'])
+num_strains = len(strains)
+
+for i in range(0, num_strains):
+ print(strains[i])
+ data = numpy.genfromtxt(path + '\\'+strains[i]+'_mRNA.fa', dtype='str', delimiter='\n')
+ num_lines = len(data)
+ new_data = numpy.ndarray( num_lines, dtype='U16000' )
+ for k in range(0, num_lines):
+  if '>' in data[k]:
+   new_data[k] = '>' + letter + str(i) + data[k][1:]
+  else:
+   new_data[k] = data[k]
+#
+ f = open( letter + str(i) + strains[i] + '_mRNA.fa', 'w' )
+ for j in range(0, num_lines):
+  a = new_data[j]
+  temp = f.write( a + "\n" )
+ f.close()
+
+

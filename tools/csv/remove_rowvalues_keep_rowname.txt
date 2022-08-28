@@ -1,0 +1,35 @@
+path0 = 'projectfiles9\data\yeast_CDS\YRC_strains\with_PPRdata_ordered'
+path1 = 'projectfiles9\data\yeast_domain\domain_200'
+p = region_diff.region_diff(path0, path1, 'Pfam')
+
+df = pandas.read_csv('threeprime_tAI_cTE_200.csv', index_col=0)
+names = list(df.index)
+for i in names:
+ if i not in p[3]:
+  df.loc[i, :] = None
+
+df.to_csv('threeprime_tAI_cTE_44_full.csv')
+
+
+df.loc['YAL038W', :] = None
+
+###
+
+df = pandas.read_csv('threeprime_tAI_cTE_200.csv', index_col=0)
+names = list(df.index)
+for i in names:
+ if i not in a2:
+  df = df.drop(i)
+
+df.to_csv('threeprime_tAI_cTE_20.csv')
+
+
+### or...
+df = pandas.read_csv('domain_tAI_cTE_171.csv', index_col=0)
+names = list(df.index)
+for i in names:
+ if i not in a2:
+  df = df.drop(i)
+
+df.to_csv('threeprime_tAI_cTE_20.csv')
+

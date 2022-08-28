@@ -1,0 +1,79 @@
+---
+title: "small_sections_deltaG_tAI_interaction"
+date: "02/07/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r libraries, message=FALSE, warning=FALSE}
+library(car)
+library(lme4)
+library(reshape2)
+```
+
+
+#### logPPR ~ sectional deltaG's + taI + all pairwise interactions{.tabset .tabset-dropdown}
+##### Menu
+##### Define the response variable, logPPR.
+```{r response_variable}
+response <- read.csv("C:/Users/anastacia/Desktop/n_PPR_774_d.csv")
+dataset <- melt(response, id.vars = "gene", variable.name = "strain", value.name = "PPR")
+dataset$logPPR <- log(dataset$PPR)
+```
+
+##### Read in cap deltaG Data
+```{r a}
+explanatory0 <- read.csv('C:/Users/anastacia/Desktop/cap_struc_frac_30C_G_774.csv')
+explanatory0 <- melt(explanatory0, id.vars = "gene", variable.name = "strain", value.name = "cap")
+dataset$cap = explanatory0$cap/10000
+```
+
+##### Read in upsteamAUG deltaG Data
+```{r b}
+explanatory1 <- read.csv('C:/Users/anastacia/Desktop/upA_struc_frac_30C_G_774.csv')
+explanatory1 <- melt(explanatory1, id.vars = "gene", variable.name = "strain", value.name = "upA")
+dataset$upA = explanatory1$upA/10000
+```
+
+##### Read in downstreamAUG deltaG Data
+```{r c}
+explanatory2 <- read.csv('C:/Users/anastacia/Desktop/dwA_struc_frac_30C_G_774.csv')
+explanatory2 <- melt(explanatory2, id.vars = "gene", variable.name = "strain", value.name = "dwA")
+dataset$dwA = explanatory2$dwA/10000
+```
+
+##### Read in downstreamSTOP deltaG Data
+```{r d}
+explanatory3 <- read.csv('C:/Users/anastacia/Desktop/dwS_struc_frac_30C_G_774.csv')
+explanatory3 <- melt(explanatory3, id.vars = "gene", variable.name = "strain", value.name = "dwS")
+dataset$dwS = explanatory3$dwS/10000
+```
+
+##### Read in tAI Data
+```{r e}
+explanatory4 <- read.csv('C:/Users/anastacia/Desktop/tAI_774_YRC_diff_d.csv')
+explanatory4 <- melt(explanatory4, id.vars = "gene", variable.name = "strain", value.name = "tAI")
+dataset$tAI = explanatory4$tAI
+```
+
+##### Summary Results of Mixed Model
+``` {r F1}
+lmm0 <- lmer(logPPR ~ tAI + cap + upA + dwA + dwS + tAI:cap + tAI:upA + tAI:dwA + tAI:dwS +(0+tAI|gene)+(0+cap|gene)+(0+upA|gene)+(0+dwA|gene)+(0+dwS|gene) + (1|gene), data=dataset, REML = FALSE, control = lmerControl(optimizer="bobyqa", optCtrl=list(maxfun=1e5)))
+summary(lmm0)
+```
+
+##### 95% Confidence Intervals
+``` {r F1confint}
+confint(lmm0, parm="cap", level=0.95)
+confint(lmm0, parm="upA", level=0.95)
+confint(lmm0, parm="dwA", level=0.95)
+confint(lmm0, parm="dwS", level=0.95)
+confint(lmm0, parm="tAI", level=0.95)
+confint(lmm0, parm="tAI:cap", level=0.95)
+confint(lmm0, parm="tAI:upA", level=0.95)
+confint(lmm0, parm="tAI:dwA", level=0.95)
+confint(lmm0, parm="tAI:dwS", level=0.95)
+```

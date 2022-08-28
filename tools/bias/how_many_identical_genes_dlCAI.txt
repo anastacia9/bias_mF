@@ -1,0 +1,55 @@
+# Which gene (domain, linker, ramp, 3') regions are identical across strains?
+# Need: sequence data from dlCAI.
+
+import pandas
+import numpy
+import os
+import dlCAI_mod
+
+# individual domain sequences -> 7
+# individual linker sequences -> 8
+# ramp sequences -> 9
+# 3' sequences -> 10
+
+# Define .csv file with gene region CAI data.
+df = pandas.read_csv('threeprime_tAI_cTE_4849.csv', index_col=0)
+gene_names = numpy.array(list(df.index))
+
+# Which rows have one or more null entries? Delete these. Update gene names vector accordingly.
+null_rows = numpy.unique(numpy.where(pandas.isnull(df))[0])
+df = df.drop(gene_names[null_rows])
+gene_names = numpy.delete(gene_names, null_rows)
+
+# Define directory with gene sequence fasta files of strains in question. Gene names in fasta files must be the same and organized in alphabetical order.
+path = 'projectfiles9\data\yeast_CDS\YRC_strains\with_PPRdata_ordered'
+directory = os.fsencode(path)
+files = os.listdir(directory)
+num_files = len(files)
+
+# Define empty array of arrays. This will be where gene sequences of the genes in question will be stored.
+gene_seqs = [None] * num_files
+
+# Loop through each strain's gene sequence file and extract needed gene region sequences.
+count = 0
+for file in files:
+ filename = "\\" + os.fsdecode(file)
+ dl_data = dlCAI_mod.dlCAI(path+filename, 'domains_total_Pfam_added.csv', 'default')
+ region_seqs = numpy.delete(dl_data[10], null_rows)
+ gene_seqs[count] = [''.join(i) for i in region_seqs]
+ print(file)
+ count += 1
+
+# Loop through collected gene sequences and find which are identical across strains.
+num_seqs = len(gene_names)
+identical = [None]*num_seqs
+count = 0
+for i in range(0, len(gene_names)):
+ single_gene_seqs = [gene_seqs[j][i] for j in range(0, num_files)]
+ if len(set(single_gene_seqs)) == 1:
+  identical[count] = gene_names[i]
+  count += 1
+
+drops1 = identical[:count]
+df = df.drop(drops1)
+
+df.to_csv('threeprime_tAI_cTE_3106.csv')

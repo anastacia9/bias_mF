@@ -1,0 +1,56 @@
+Enriched GO-terms (FDR value less than 10e-10 in at least one gene set).
+Terms in caps do not satisfy the above criteria, but are parent terms.
+Terms organized in proper nesting order.
+See figure S1 in thesis for gene sets of interest.
+
+[
+'cellular process',							0
+ 'cellular metabolic process',						1
+  "CELLULAR AROMATIC COMPOUND METABOLIC PROCESS"			2
+   "AROMATIC COMPOUND BIOSYNTHETIC PROCESS"				3
+    "NUCLEOBASE-CONTAINING COMPOUND BIOSYNTHETIC PROCESS"		4
+     'nucleoside phosphate biosynthetic process',			5
+      'nucleotide biosynthetic process',				6
+   "NUCLEOBASE-CONTAINING COMPOUND METABOLIC PROCESS"			3
+    'nucleobase-containing small molecule metabolic process',		4
+     'nucleoside phosphate metabolic process',				5
+      'nucleotide metabolic process',					6
+       'purine nucleotide metabolic process',				7
+        'purine ribonucleotide metabolic process',			8
+       'ribonucleotide metabolic process',				7
+   'purine-containing compound metabolic process',			3
+  "CELLULAR NITROGEN COMPOUND METABOLIC PROCESS"			2
+   'cellular amide metabolic process',					3
+    'amide biosynthetic process',					4
+     'peptide biosynthetic process',					5
+    'peptide metabolic process',					4
+  'generation of precursor metabolites and energy',			2
+  'organic acid metabolic process',					2
+   'oxoacid metabolic process',						3
+    'carboxylic acid metabolic process',				4
+     'carboxylic acid biosynthetic process ',				5
+     'cellular amino acid metabolic process',				5
+
+
+'metabolic process',							0
+ 'ATP metabolic process',						1
+ 'biosynthetic process',						1
+  'cellular biosynthetic process',					2
+   'cellular nitrogen compound biosynthetic process',			3
+  'organic substance biosynthetic process',				2
+   'organic acid biosynthetic process',					3
+   'organonitrogen compound biosynthetic process',			3
+  'small molecule biosynthetic process',				2
+ 'nitrogen compound metabolic process',					1			
+  'organonitrogen compound metabolic process',				2
+ 'organic substance metabolic process',					1
+  'carbohydrate derivative metabolic process',				2
+   'ribose phosphate metabolic process',				3
+  "MACROMOLECULE METABOLIC PROCESS"					2
+   "GENE EXPRESSION"							3
+    'translation',							4
+     'cytoplasmic translation'						5
+ 'oxidation-reduction process',						1
+ 'primary metabolic process',						1
+ 'small molecule metabolic process'					1
+]

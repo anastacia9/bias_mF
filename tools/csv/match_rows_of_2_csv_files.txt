@@ -1,0 +1,12 @@
+df = pandas.read_csv('peptides_average_1636.csv', index_col=0)
+df2 = pandas.read_csv('Ghaemmaghami_protein_exp_1288.csv', index_col=0)
+
+
+mylist = list(df.index)
+count = 0
+for i in mylist:
+ if i not in list(df2.index):
+  df = df.drop(i)
+  count += 1
+
+df.to_csv('peptides_average_1288.csv')

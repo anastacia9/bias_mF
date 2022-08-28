@@ -1,0 +1,13 @@
+# To translate a CDS fasta file. Code from Biopython.
+
+from Bio.SeqRecord import SeqRecord
+from Bio import SeqIO
+
+def make_protein_record(nuc_record):
+ return SeqRecord(seq = nuc_record.seq.translate(to_stop=True), \
+                  id = "trans_" + nuc_record.id, \
+                  description = "")
+
+
+proteins = (make_protein_record(nuc_rec) for nuc_rec in SeqIO.parse("S288c_ordered.fa", "fasta"))
+SeqIO.write(proteins, "translations.fa", "fasta")

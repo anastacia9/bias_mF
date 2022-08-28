@@ -1,0 +1,223 @@
+GO biological process complete 	num_total 	num_seen 	expected 	Fold Enrichment 	+/- 	raw P value 	FDR
+trehalose metabolism in response to stress 	5 	5 	.59 	8.54 	+ 	2.01E-03 	4.81E-02
+cellular macromolecule localization 	714 	113 	83.65 	1.35 	+ 	1.97E-03 	4.74E-02
+response to stimulus 	1204 	177 	141.06 	1.25 	+ 	1.90E-03 	4.60E-02
+regulation of DNA-templated transcription, initiation 	24 	10 	2.81 	3.56 	+ 	1.90E-03 	4.59E-02
+cellular response to stimulus 	1045 	157 	122.43 	1.28 	+ 	1.80E-03 	4.41E-02
+protein-containing complex localization 	158 	34 	18.51 	1.84 	+ 	1.80E-03 	4.39E-02
+organophosphate biosynthetic process 	246 	48 	28.82 	1.67 	+ 	1.71E-03 	4.20E-02
+mRNA-containing ribonucleoprotein complex export from nucleus 	63 	18 	7.38 	2.44 	+ 	1.61E-03 	4.00E-02
+mRNA export from nucleus 	63 	18 	7.38 	2.44 	+ 	1.61E-03 	3.98E-02
+lysine biosynthetic process via aminoadipic acid 	11 	7 	1.29 	5.43 	+ 	1.53E-03 	3.81E-02
+regulation of transcription initiation from RNA polymerase II promoter 	23 	10 	2.69 	3.71 	+ 	1.48E-03 	3.76E-02
+nucleobase metabolic process 	37 	13 	4.33 	3.00 	+ 	1.49E-03 	3.75E-02
+nucleobase biosynthetic process 	23 	10 	2.69 	3.71 	+ 	1.48E-03 	3.74E-02
+poly(A)+ mRNA export from nucleus 	37 	13 	4.33 	3.00 	+ 	1.49E-03 	3.73E-02
+actin filament-based process 	118 	28 	13.82 	2.03 	+ 	1.44E-03 	3.68E-02
+protein localization to nucleus 	71 	20 	8.32 	2.40 	+ 	1.43E-03 	3.66E-02
+cellular macromolecule metabolic process 	2014 	279 	235.96 	1.18 	+ 	1.41E-03 	3.64E-02
+rRNA metabolic process 	297 	56 	34.80 	1.61 	+ 	1.26E-03 	3.30E-02
+cellular response to environmental stimulus 	86 	23 	10.08 	2.28 	+ 	1.26E-03 	3.28E-02
+cellular response to abiotic stimulus 	86 	23 	10.08 	2.28 	+ 	1.26E-03 	3.27E-02
+steroid biosynthetic process 	36 	13 	4.22 	3.08 	+ 	1.22E-03 	3.20E-02
+SRP-dependent cotranslational protein targeting to membrane, translocation 	14 	8 	1.64 	4.88 	+ 	1.18E-03 	3.13E-02
+glycogen biosynthetic process 	14 	8 	1.64 	4.88 	+ 	1.18E-03 	3.11E-02
+amide transport 	693 	112 	81.19 	1.38 	+ 	1.12E-03 	3.03E-02
+cellular response to stress 	724 	116 	84.82 	1.37 	+ 	1.13E-03 	3.03E-02
+alcohol metabolic process 	93 	24 	10.90 	2.20 	+ 	1.13E-03 	3.02E-02
+hexose metabolic process 	53 	17 	6.21 	2.74 	+ 	1.11E-03 	3.00E-02
+cellular macromolecule catabolic process 	402 	72 	47.10 	1.53 	+ 	1.03E-03 	2.86E-02
+aminoacyl-tRNA metabolism involved in translational fidelity 	10 	7 	1.17 	5.97 	+ 	1.03E-03 	2.85E-02
+chaperone-mediated protein folding 	26 	11 	3.05 	3.61 	+ 	1.03E-03 	2.84E-02
+cellular lipid metabolic process 	287 	55 	33.62 	1.64 	+ 	1.04E-03 	2.84E-02
+regulation of transport 	110 	27 	12.89 	2.10 	+ 	1.04E-03 	2.84E-02
+regulation of cellular component organization 	466 	81 	54.60 	1.48 	+ 	1.01E-03 	2.82E-02
+glutamine family amino acid metabolic process 	59 	18 	6.91 	2.60 	+ 	9.86E-04 	2.80E-02
+secondary alcohol metabolic process 	35 	13 	4.10 	3.17 	+ 	9.86E-04 	2.79E-02
+sterol biosynthetic process 	35 	13 	4.10 	3.17 	+ 	9.86E-04 	2.77E-02
+rRNA processing 	280 	54 	32.80 	1.65 	+ 	9.39E-04 	2.68E-02
+cellular component macromolecule biosynthetic process 	30 	12 	3.51 	3.41 	+ 	9.15E-04 	2.65E-02
+cell wall macromolecule biosynthetic process 	30 	12 	3.51 	3.41 	+ 	9.15E-04 	2.64E-02
+DNA recombination 	233 	11 	27.30 	.40 	- 	9.02E-04 	2.63E-02
+cell wall macromolecule metabolic process 	30 	12 	3.51 	3.41 	+ 	9.15E-04 	2.63E-02
+glucose 6-phosphate metabolic process 	21 	10 	2.46 	4.06 	+ 	8.61E-04 	2.52E-02
+translational initiation 	49 	16 	5.74 	2.79 	+ 	8.48E-04 	2.50E-02
+acetyl-CoA metabolic process 	13 	8 	1.52 	5.25 	+ 	8.24E-04 	2.44E-02
+actin cytoskeleton organization 	114 	28 	13.36 	2.10 	+ 	7.97E-04 	2.43E-02
+ergosterol biosynthetic process 	25 	11 	2.93 	3.76 	+ 	8.01E-04 	2.43E-02
+phytosteroid biosynthetic process 	25 	11 	2.93 	3.76 	+ 	8.01E-04 	2.42E-02
+macromolecule metabolic process 	2432 	332 	284.93 	1.17 	+ 	7.82E-04 	2.41E-02
+protein import 	125 	30 	14.64 	2.05 	+ 	7.83E-04 	2.40E-02
+cellular lipid biosynthetic process 	25 	11 	2.93 	3.76 	+ 	8.01E-04 	2.40E-02
+cellular alcohol biosynthetic process 	25 	11 	2.93 	3.76 	+ 	8.01E-04 	2.39E-02
+purine ribonucleotide biosynthetic process 	63 	19 	7.38 	2.57 	+ 	7.55E-04 	2.34E-02
+oligosaccharide metabolic process 	29 	12 	3.40 	3.53 	+ 	7.21E-04 	2.29E-02
+phytosteroid metabolic process 	29 	12 	3.40 	3.53 	+ 	7.21E-04 	2.28E-02
+ergosterol metabolic process 	29 	12 	3.40 	3.53 	+ 	7.21E-04 	2.26E-02
+cellular alcohol metabolic process 	29 	12 	3.40 	3.53 	+ 	7.21E-04 	2.25E-02
+lipid biosynthetic process 	179 	39 	20.97 	1.86 	+ 	6.88E-04 	2.20E-02
+'de novo' IMP biosynthetic process 	9 	7 	1.05 	6.64 	+ 	6.62E-04 	2.13E-02
+establishment of organelle localization 	121 	30 	14.18 	2.12 	+ 	6.28E-04 	2.03E-02
+nitrogen compound transport 	821 	131 	96.19 	1.36 	+ 	5.96E-04 	1.95E-02
+cellular amide metabolic process 	487 	85 	57.06 	1.49 	+ 	6.00E-04 	1.95E-02
+ribosome localization 	52 	17 	6.09 	2.79 	+ 	5.83E-04 	1.92E-02
+ribonucleoside monophosphate metabolic process 	42 	15 	4.92 	3.05 	+ 	5.75E-04 	1.92E-02
+regulation of cellular amide metabolic process 	151 	35 	17.69 	1.98 	+ 	5.69E-04 	1.91E-02
+nucleoside monophosphate biosynthetic process 	42 	15 	4.92 	3.05 	+ 	5.75E-04 	1.91E-02
+IMP biosynthetic process 	12 	8 	1.41 	5.69 	+ 	5.61E-04 	1.90E-02
+endocytosis 	108 	28 	12.65 	2.21 	+ 	5.33E-04 	1.81E-02
+ribosomal subunit export from nucleus 	51 	17 	5.98 	2.85 	+ 	4.86E-04 	1.67E-02
+dicarboxylic acid metabolic process 	51 	17 	5.98 	2.85 	+ 	4.86E-04 	1.66E-02
+regulation of nucleocytoplasmic transport 	23 	11 	2.69 	4.08 	+ 	4.64E-04 	1.61E-02
+polysaccharide metabolic process 	65 	20 	7.62 	2.63 	+ 	4.57E-04 	1.60E-02
+protein export from nucleus 	124 	31 	14.53 	2.13 	+ 	4.45E-04 	1.56E-02
+oligosaccharide biosynthetic process 	8 	7 	.94 	7.47 	+ 	4.09E-04 	1.46E-02
+ribonucleoprotein complex biogenesis 	478 	85 	56.00 	1.52 	+ 	4.05E-04 	1.45E-02
+aspartate family amino acid biosynthetic process 	55 	18 	6.44 	2.79 	+ 	4.01E-04 	1.45E-02
+disaccharide biosynthetic process 	8 	7 	.94 	7.47 	+ 	4.09E-04 	1.45E-02
+regulation of translational fidelity 	31 	13 	3.63 	3.58 	+ 	3.94E-04 	1.43E-02
+cellular response to osmotic stress 	63 	20 	7.38 	2.71 	+ 	3.67E-04 	1.35E-02
+cellular component biogenesis 	1101 	169 	128.99 	1.31 	+ 	3.68E-04 	1.35E-02
+response to stress 	773 	126 	90.56 	1.39 	+ 	3.49E-04 	1.31E-02
+aspartate family amino acid metabolic process 	69 	21 	8.08 	2.60 	+ 	3.53E-04 	1.31E-02
+glucose metabolic process 	35 	14 	4.10 	3.41 	+ 	3.49E-04 	1.31E-02
+purine ribonucleoside monophosphate metabolic process 	26 	12 	3.05 	3.94 	+ 	3.32E-04 	1.28E-02
+purine nucleoside monophosphate metabolic process 	26 	12 	3.05 	3.94 	+ 	3.32E-04 	1.27E-02
+secondary alcohol biosynthetic process 	26 	12 	3.05 	3.94 	+ 	3.32E-04 	1.26E-02
+regulation of translation 	147 	35 	17.22 	2.03 	+ 	3.19E-04 	1.24E-02
+nuclear export 	127 	32 	14.88 	2.15 	+ 	3.14E-04 	1.23E-02
+protein import into nucleus 	61 	20 	7.15 	2.80 	+ 	3.10E-04 	1.22E-02
+response to abiotic stimulus 	193 	43 	22.61 	1.90 	+ 	3.03E-04 	1.22E-02
+lysine biosynthetic process 	14 	9 	1.64 	5.49 	+ 	3.07E-04 	1.22E-02
+ribonucleoside monophosphate biosynthetic process 	39 	15 	4.57 	3.28 	+ 	3.04E-04 	1.21E-02
+regulation of cellular process 	1610 	235 	188.63 	1.25 	+ 	2.97E-04 	1.21E-02
+macromolecule catabolic process 	432 	79 	50.61 	1.56 	+ 	2.92E-04 	1.19E-02
+ribonucleoprotein complex localization 	123 	31 	14.41 	2.15 	+ 	2.82E-04 	1.16E-02
+ribonucleoprotein complex export from nucleus 	122 	31 	14.29 	2.17 	+ 	2.58E-04 	1.07E-02
+purine nucleoside bisphosphate metabolic process 	29 	13 	3.40 	3.83 	+ 	2.36E-04 	1.02E-02
+translational elongation 	29 	13 	3.40 	3.83 	+ 	2.36E-04 	1.01E-02
+cellular glucan metabolic process 	52 	18 	6.09 	2.95 	+ 	2.29E-04 	1.00E-02
+trehalose biosynthetic process 	7 	7 	.82 	8.54 	+ 	2.40E-04 	1.00E-02
+ribonucleoside bisphosphate metabolic process 	29 	13 	3.40 	3.83 	+ 	2.36E-04 	1.00E-02
+glucan metabolic process 	52 	18 	6.09 	2.95 	+ 	2.29E-04 	9.96E-03
+nucleoside bisphosphate metabolic process 	29 	13 	3.40 	3.83 	+ 	2.36E-04 	9.95E-03
+ribonucleotide biosynthetic process 	77 	23 	9.02 	2.55 	+ 	2.18E-04 	9.67E-03
+nucleoside diphosphate metabolic process 	33 	14 	3.87 	3.62 	+ 	2.16E-04 	9.62E-03
+IMP metabolic process 	13 	9 	1.52 	5.91 	+ 	2.06E-04 	9.33E-03
+organonitrogen compound catabolic process 	391 	74 	45.81 	1.62 	+ 	2.07E-04 	9.33E-03
+intracellular protein transport 	504 	90 	59.05 	1.52 	+ 	1.94E-04 	8.90E-03
+protein folding 	118 	31 	13.82 	2.24 	+ 	1.92E-04 	8.85E-03
+glutamine metabolic process 	24 	12 	2.81 	4.27 	+ 	1.87E-04 	8.71E-03
+RNA export from nucleus 	125 	32 	14.64 	2.19 	+ 	1.81E-04 	8.52E-03
+intracellular transport 	664 	113 	77.79 	1.45 	+ 	1.78E-04 	8.43E-03
+cellular localization 	929 	149 	108.84 	1.37 	+ 	1.75E-04 	8.37E-03
+organelle localization 	200 	45 	23.43 	1.92 	+ 	1.67E-04 	8.06E-03
+sulfur compound metabolic process 	134 	34 	15.70 	2.17 	+ 	1.64E-04 	7.98E-03
+ribosome biogenesis 	394 	75 	46.16 	1.62 	+ 	1.60E-04 	7.89E-03
+posttranscriptional regulation of gene expression 	162 	39 	18.98 	2.05 	+ 	1.45E-04 	7.17E-03
+purine ribonucleoside monophosphate biosynthetic process 	23 	12 	2.69 	4.45 	+ 	1.38E-04 	7.02E-03
+nucleoside phosphate biosynthetic process 	129 	33 	15.11 	2.18 	+ 	1.40E-04 	7.01E-03
+purine nucleoside monophosphate biosynthetic process 	23 	12 	2.69 	4.45 	+ 	1.38E-04 	6.96E-03
+chaperone cofactor-dependent protein refolding 	19 	11 	2.23 	4.94 	+ 	1.31E-04 	6.82E-03
+'de novo' posttranslational protein folding 	19 	11 	2.23 	4.94 	+ 	1.31E-04 	6.76E-03
+organic substance transport 	915 	148 	107.20 	1.38 	+ 	1.29E-04 	6.76E-03
+regulation of cellular component biogenesis 	191 	44 	22.38 	1.97 	+ 	1.21E-04 	6.42E-03
+lysine metabolic process 	15 	10 	1.76 	5.69 	+ 	1.14E-04 	6.10E-03
+nucleotide biosynthetic process 	126 	33 	14.76 	2.24 	+ 	1.07E-04 	5.82E-03
+ribose phosphate biosynthetic process 	83 	25 	9.72 	2.57 	+ 	1.04E-04 	5.68E-03
+purine nucleotide biosynthetic process 	71 	23 	8.32 	2.76 	+ 	1.03E-04 	5.67E-03
+purine-containing compound biosynthetic process 	77 	24 	9.02 	2.66 	+ 	9.93E-05 	5.67E-03
+SRP-dependent cotranslational protein targeting to membrane 	22 	12 	2.58 	4.66 	+ 	9.98E-05 	5.64E-03
+cotranslational protein targeting to membrane 	22 	12 	2.58 	4.66 	+ 	9.98E-05 	5.58E-03
+trehalose metabolic process 	11 	9 	1.29 	6.98 	+ 	8.43E-05 	4.86E-03
+transposition, RNA-mediated 	91 	0 	10.66 	< 0.01 	- 	8.22E-05 	4.80E-03
+ribonucleoside diphosphate metabolic process 	29 	14 	3.40 	4.12 	+ 	7.37E-05 	4.66E-03
+purine ribonucleoside diphosphate metabolic process 	29 	14 	3.40 	4.12 	+ 	7.37E-05 	4.60E-03
+nucleotide phosphorylation 	29 	14 	3.40 	4.12 	+ 	7.37E-05 	4.55E-03
+macromolecule localization 	926 	151 	108.49 	1.39 	+ 	7.11E-05 	4.55E-03
+import into nucleus 	66 	22 	7.73 	2.85 	+ 	7.55E-05 	4.50E-03
+purine nucleoside diphosphate metabolic process 	29 	14 	3.40 	4.12 	+ 	7.37E-05 	4.50E-03
+mRNA transport 	96 	28 	11.25 	2.49 	+ 	7.60E-05 	4.49E-03
+response to osmotic stress 	95 	28 	11.13 	2.52 	+ 	6.90E-05 	4.47E-03
+nucleoside diphosphate phosphorylation 	29 	14 	3.40 	4.12 	+ 	7.37E-05 	4.45E-03
+cellular polysaccharide metabolic process 	55 	20 	6.44 	3.10 	+ 	5.98E-05 	3.92E-03
+regulation of biological process 	1727 	255 	202.33 	1.26 	+ 	5.77E-05 	3.83E-03
+ADP metabolic process 	28 	14 	3.28 	4.27 	+ 	5.49E-05 	3.69E-03
+acyl-CoA metabolic process 	20 	12 	2.34 	5.12 	+ 	5.01E-05 	3.45E-03
+thioester metabolic process 	20 	12 	2.34 	5.12 	+ 	5.01E-05 	3.41E-03
+nucleobase-containing compound transport 	207 	48 	24.25 	1.98 	+ 	4.11E-05 	2.87E-03
+'de novo' protein folding 	27 	14 	3.16 	4.43 	+ 	4.04E-05 	2.86E-03
+ncRNA metabolic process 	457 	87 	53.54 	1.62 	+ 	3.90E-05 	2.80E-03
+transposition 	97 	0 	11.36 	< 0.01 	- 	3.39E-05 	2.47E-03
+ATP generation from ADP 	26 	14 	3.05 	4.60 	+ 	2.94E-05 	2.20E-03
+glucan biosynthetic process 	34 	16 	3.98 	4.02 	+ 	2.90E-05 	2.20E-03
+glycolytic process 	26 	14 	3.05 	4.60 	+ 	2.94E-05 	2.17E-03
+nucleic acid transport 	163 	42 	19.10 	2.20 	+ 	2.16E-05 	1.66E-03
+polysaccharide biosynthetic process 	37 	17 	4.33 	3.92 	+ 	2.08E-05 	1.63E-03
+carbohydrate catabolic process 	82 	27 	9.61 	2.81 	+ 	1.93E-05 	1.53E-03
+cellular nitrogen compound metabolic process 	1883 	278 	220.61 	1.26 	+ 	1.64E-05 	1.32E-03
+cellular polysaccharide biosynthetic process 	36 	17 	4.22 	4.03 	+ 	1.58E-05 	1.29E-03
+regulation of biological quality 	582 	107 	68.19 	1.57 	+ 	1.37E-05 	1.14E-03
+establishment of RNA localization 	161 	42 	18.86 	2.23 	+ 	1.20E-05 	1.03E-03
+RNA transport 	161 	42 	18.86 	2.23 	+ 	1.20E-05 	1.01E-03
+protein refolding 	34 	17 	3.98 	4.27 	+ 	8.83E-06 	7.69E-04
+cellular amino acid biosynthetic process 	129 	37 	15.11 	2.45 	+ 	7.49E-06 	6.63E-04
+cellular catabolic process 	759 	134 	88.92 	1.51 	+ 	5.83E-06 	5.25E-04
+carbohydrate derivative biosynthetic process 	237 	56 	27.77 	2.02 	+ 	5.70E-06 	5.22E-04
+generation of precursor metabolites and energy 	211 	52 	24.72 	2.10 	+ 	4.57E-06 	4.50E-04
+organic acid biosynthetic process 	192 	49 	22.49 	2.18 	+ 	4.60E-06 	4.44E-04
+heterocycle metabolic process 	1581 	244 	185.23 	1.32 	+ 	4.75E-06 	4.42E-04
+carboxylic acid biosynthetic process 	192 	49 	22.49 	2.18 	+ 	4.60E-06 	4.37E-04
+alpha-amino acid biosynthetic process 	121 	36 	14.18 	2.54 	+ 	4.28E-06 	4.29E-04
+cellular carbohydrate metabolic process 	136 	39 	15.93 	2.45 	+ 	3.91E-06 	3.99E-04
+RNA localization 	185 	48 	21.67 	2.21 	+ 	3.28E-06 	3.41E-04
+cellular carbohydrate biosynthetic process 	47 	21 	5.51 	3.81 	+ 	3.19E-06 	3.39E-04
+cellular aromatic compound metabolic process 	1568 	244 	183.71 	1.33 	+ 	2.35E-06 	2.55E-04
+monocarboxylic acid metabolic process 	160 	44 	18.75 	2.35 	+ 	2.21E-06 	2.45E-04
+nucleobase-containing compound metabolic process 	1479 	233 	173.28 	1.34 	+ 	1.92E-06 	2.31E-04
+tRNA aminoacylation 	41 	20 	4.80 	4.16 	+ 	1.92E-06 	2.27E-04
+amino acid activation 	41 	20 	4.80 	4.16 	+ 	1.92E-06 	2.22E-04
+tRNA aminoacylation for protein translation 	37 	19 	4.33 	4.38 	+ 	1.94E-06 	2.19E-04
+organophosphate metabolic process 	370 	80 	43.35 	1.85 	+ 	1.37E-06 	1.69E-04
+establishment of localization 	1326 	215 	155.35 	1.38 	+ 	9.96E-07 	1.26E-04
+transport 	1285 	210 	150.55 	1.39 	+ 	7.68E-07 	9.95E-05
+oxidation-reduction process 	451 	94 	52.84 	1.78 	+ 	5.59E-07 	7.42E-05
+carbohydrate biosynthetic process 	65 	27 	7.62 	3.55 	+ 	4.02E-07 	5.48E-05
+nuclear transport 	168 	48 	19.68 	2.44 	+ 	3.42E-07 	4.91E-05
+nucleocytoplasmic transport 	168 	48 	19.68 	2.44 	+ 	3.42E-07 	4.78E-05
+phosphate-containing compound metabolic process 	691 	131 	80.96 	1.62 	+ 	2.80E-07 	4.12E-05
+localization 	1498 	241 	175.50 	1.37 	+ 	2.05E-07 	3.31E-05
+organic cyclic compound metabolic process 	1636 	259 	191.67 	1.35 	+ 	2.09E-07 	3.27E-05
+carbohydrate metabolic process 	231 	60 	27.06 	2.22 	+ 	2.14E-07 	3.24E-05
+small molecule biosynthetic process 	331 	77 	38.78 	1.99 	+ 	1.62E-07 	2.69E-05
+biological regulation 	2095 	319 	245.45 	1.30 	+ 	8.08E-08 	1.38E-05
+organic substance catabolic process 	692 	135 	81.07 	1.67 	+ 	3.92E-08 	6.94E-06
+organonitrogen compound biosynthetic process 	868 	161 	101.69 	1.58 	+ 	2.67E-08 	4.89E-06
+nucleoside phosphate metabolic process 	189 	55 	22.14 	2.48 	+ 	2.44E-08 	4.64E-06
+catabolic process 	851 	159 	99.70 	1.59 	+ 	2.07E-08 	4.08E-06
+pyruvate metabolic process 	38 	23 	4.45 	5.17 	+ 	1.65E-08 	3.36E-06
+phosphorus metabolic process 	709 	139 	83.07 	1.67 	+ 	1.40E-08 	2.97E-06
+alpha-amino acid metabolic process 	179 	54 	20.97 	2.57 	+ 	1.10E-08 	2.43E-06
+purine ribonucleotide metabolic process 	104 	39 	12.18 	3.20 	+ 	1.05E-08 	2.42E-06
+nucleotide metabolic process 	182 	55 	21.32 	2.58 	+ 	7.52E-09 	1.81E-06
+ribonucleotide metabolic process 	118 	43 	13.82 	3.11 	+ 	3.65E-09 	9.23E-07
+ribose phosphate metabolic process 	125 	45 	14.64 	3.07 	+ 	2.13E-09 	5.66E-07
+purine nucleotide metabolic process 	113 	43 	13.24 	3.25 	+ 	1.26E-09 	3.52E-07
+nucleobase-containing small molecule metabolic process 	219 	64 	25.66 	2.49 	+ 	1.16E-09 	3.43E-07
+purine-containing compound metabolic process 	129 	47 	15.11 	3.11 	+ 	6.71E-10 	2.10E-07
+cellular biosynthetic process 	1480 	255 	173.40 	1.47 	+ 	1.19E-10 	3.94E-08
+carbohydrate derivative metabolic process 	334 	88 	39.13 	2.25 	+ 	7.25E-11 	2.57E-08
+organonitrogen compound metabolic process 	1901 	313 	222.72 	1.41 	+ 	2.41E-11 	9.13E-09
+biosynthetic process 	1543 	269 	180.78 	1.49 	+ 	7.14E-12 	2.92E-09
+nitrogen compound metabolic process 	2840 	429 	332.73 	1.29 	+ 	6.43E-12 	2.84E-09
+organic substance biosynthetic process 	1508 	266 	176.68 	1.51 	+ 	2.74E-12 	1.32E-09
+cellular amino acid metabolic process 	242 	77 	28.35 	2.72 	+ 	6.87E-13 	3.65E-10
+primary metabolic process 	3048 	477 	357.10 	1.34 	+ 	6.61E-18 	3.90E-15
+carboxylic acid metabolic process 	395 	120 	46.28 	2.59 	+ 	1.31E-18 	8.69E-16
+cellular process 	4643 	639 	543.97 	1.17 	+ 	7.94E-19 	7.03E-16
+cellular metabolic process 	3304 	508 	387.09 	1.31 	+ 	8.69E-19 	6.59E-16
+small molecule metabolic process 	710 	177 	83.18 	2.13 	+ 	1.36E-19 	2.41E-16
+metabolic process 	3508 	532 	410.99 	1.29 	+ 	2.16E-19 	2.29E-16
+organic substance metabolic process 	3236 	503 	379.13 	1.33 	+ 	1.70E-19 	2.26E-16
+organic acid metabolic process 	415 	128 	48.62 	2.63 	+ 	2.85E-20 	1.51E-16
+oxoacid metabolic process 	413 	127 	48.39 	2.62 	+ 	4.83E-20 	1.28E-16

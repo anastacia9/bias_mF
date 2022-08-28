@@ -1,0 +1,340 @@
+---
+title: "Comparing Four Measures of Codon Bias"
+subtitle: "Full set of genes: 1620 genes, each different at the nucleotide sequence level across 22 strains\n\nPartial set of genes: 185 genes, each different at the nucleotide sequence level and identical at the amino acid sequence level across 22 strains"
+output:
+  html_document: default
+  pdf_document: default
+date: "09/11/2019"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r libraries, message=FALSE}
+library(car)
+library(lme4)
+library(reshape2)
+```
+
+### Analysis of Codon Bias on the Full Set of Genes
+Define the response variable.
+```{r response_variable}
+response <- read.csv('n_PPR_1620_d.csv')
+dataset <- melt(response, id.vars = "gene", variable.name = "strain", value.name = "PPR")
+dataset$logPPR <- log(dataset$PPR)
+```
+
+
+
+
+
+#### Codon Adaptation Index (CAI) with Carbone Reference Set{.tabset .tabset-dropdown}
+##### Menu
+##### Read in Data
+```{r CAI0}
+explanatory1 <- read.csv('CAI_Carbone_1620_YRC_diff_d.csv')
+explanatory1 <- melt(explanatory1, id.vars = "gene", variable.name = "strain", value.name = "CAI")
+dataset$CAI <- explanatory1$CAI
+```
+
+##### Summary Results of Mixed Model
+``` {r CAI1}
+lmm1 <- lmer(logPPR ~ CAI + (1+CAI|gene), data=dataset, REML = FALSE, control = lmerControl(optimizer="bobyqa", optCtrl=list(maxfun=1e5)))
+summary(lmm1)
+```
+
+##### Fixed Effects Slope Significance Results
+``` {r CAI2}
+lmm2 <- lmer(logPPR ~ (1+CAI|gene), data=dataset, REML = FALSE, control = lmerControl(optimizer="bobyqa", optCtrl=list(maxfun=1e5)))
+anova(lmm1, lmm2)
+```
+
+##### Diagnostic Plots
+``` {r CAI3, fig.align='center', fig.height=10, fig.width=10}
+par(mfrow=c(2,2))
+res = residuals(lmm1)
+
+scatter.smooth(fitted(lmm1), res, col='slateblue', span=0.1, xlab='Fitted Values', ylab='Residuals')
+scatter.smooth(dataset$CAI, res, col='slateblue', span=0.1, xlab='CAI (Carbone)', ylab='Residuals')
+qqnorm(res, col='slateblue')
+qqline(res)
+hist(res, main='', xlab='Residuals', ylab='Frequency', col='slateblue')
+```
+
+
+
+
+
+#### Length-Normalized Codon Adaptation Index (nlCAI) {.tabset .tabset-dropdown}
+##### Menu
+##### Read in Data
+```{r nlCAI0}
+explanatory2 <- read.csv('nlCAI_1620_YRC_diff_d.csv')
+explanatory2 <- melt(explanatory2, id.vars = "gene", variable.name = "strain", value.name = "nlCAI")
+dataset$nlCAI <- explanatory2$nlCAI
+```
+
+##### Summary Results of Mixed Model
+``` {r nlCAI1}
+lmm3 <- lmer(logPPR ~ nlCAI + (1+nlCAI|gene), data=dataset, REML = FALSE, control = lmerControl(optimizer="bobyqa", optCtrl=list(maxfun=1e5)))
+summary(lmm3)
+```
+
+##### Fixed Effects Slope Significance Results
+``` {r nlCAI2}
+lmm4 <- lmer(logPPR ~ (1+nlCAI|gene), data=dataset, REML = FALSE, control = lmerControl(optimizer="bobyqa", optCtrl=list(maxfun=1e5)))
+anova(lmm3, lmm4)
+```
+
+##### Diagnostic Plots
+``` {r nlCAI3, fig.align='center', fig.height=10, fig.width=10}
+par(mfrow=c(2,2))
+res = residuals(lmm3)
+
+scatter.smooth(fitted(lmm3), res, col='salmon', span=0.1, xlab='Fitted Values', ylab='Residuals')
+scatter.smooth(dataset$nlCAI, res, col='salmon', span=0.1, xlab='nlCAI', ylab='Residuals')
+qqnorm(res, col='salmon')
+qqline(res)
+hist(res, main='', xlab='Residuals', ylab='Frequency', col='salmon')
+```
+
+
+
+
+
+#### tRNA Adaptation Index (tAI) {.tabset .tabset-dropdown}
+##### Menu
+##### Read in Data
+```{r tAI0}
+explanatory3 <- read.csv('tAI_1620_YRC_diff_d.csv')
+explanatory3 <- melt(explanatory3, id.vars = "gene", variable.name = "strain", value.name = "tAI")
+dataset$tAI <- explanatory3$tAI
+```
+
+##### Summary Results of Model
+``` {r tAI1}
+lmm5 <- lmer(logPPR ~ tAI + (1+tAI|gene), data=dataset, REML = FALSE, control = lmerControl(optimizer="bobyqa", optCtrl=list(maxfun=1e5)))
+summary(lmm5)
+```
+
+##### Fixed Effects Slope Significance Results
+``` {r tAI2}
+lmm6 <- lmer(logPPR ~ (1+tAI|gene), data=dataset, REML = FALSE, control = lmerControl(optimizer="bobyqa", optCtrl=list(maxfun=1e5)))
+anova(lmm5, lmm6)
+```
+
+##### Diagnostic Plots
+``` {r tAI3, fig.align='center', fig.height=10, fig.width=10}
+par(mfrow=c(2,2))
+res = residuals(lmm5)
+
+scatter.smooth(fitted(lmm5), res, col='yellowgreen', span=0.1, xlab='Fitted Values', ylab='Residuals')
+scatter.smooth(dataset$tAI, res, col='yellowgreen', span=0.1, xlab='tAI', ylab='Residuals')
+qqnorm(res, col='yellowgreen')
+qqline(res)
+hist(res, main='', xlab='Residuals', ylab='Frequency', col='yellowgreen')
+```
+
+
+
+
+
+#### Normalized tRNA Adaptation Index (ntAI) {.tabset .tabset-dropdown}
+##### Menu
+##### Read in Data
+```{r ntAI0}
+explanatory4 <- read.csv('ntAI_1620_YRC_diff_d.csv')
+explanatory4 <- melt(explanatory4, id.vars = "gene", variable.name = "strain", value.name = "ntAI")
+dataset$ntAI <- explanatory4$ntAI
+```
+
+##### Summary Results of Model
+``` {r ntAI1}
+lmm7 <- lmer(logPPR ~ ntAI + (1+ntAI|gene), data=dataset, REML = FALSE, control = lmerControl(optimizer="bobyqa", optCtrl=list(maxfun=1e5)))
+summary(lmm7)
+```
+
+##### Fixed Effects Slope Significance Results
+``` {r ntAI2}
+lmm8 <- lmer(logPPR ~ (1+ntAI|gene), data=dataset, REML = FALSE, control = lmerControl(optimizer="bobyqa", optCtrl=list(maxfun=1e5)))
+anova(lmm7, lmm8)
+```
+
+##### Diagnostic Plots
+``` {r ntAI3, fig.align='center', fig.height=10, fig.width=10}
+par(mfrow=c(2,2))
+res = residuals(lmm7)
+
+scatter.smooth(fitted(lmm7), res, col='peru', span=0.1, xlab='Fitted Values', ylab='Residuals')
+scatter.smooth(dataset$ntAI, res, col='peru', span=0.1, xlab='ntAI', ylab='Residuals')
+qqnorm(res, col='peru')
+qqline(res)
+hist(res, main='', xlab='Residuals', ylab='Frequency', col='peru')
+rm(list=ls())
+```
+
+
+
+
+
+
+
+
+
+
+### Analysis of Codon Bias on Partial Set of Genes
+Define the response variable.
+```{r response_variablet}
+response <- read.csv('n_PPR_185_d.csv')
+dataset <- melt(response, id.vars = "gene", variable.name = "strain", value.name = "PPR")
+dataset$logPPR <- log(dataset$PPR)
+```
+
+
+
+
+
+#### Codon Adaptation Index (CAI) with Carbone Reference Set{.tabset .tabset-dropdown}
+##### Menu
+##### Read in Data
+```{r CAIt0}
+explanatory1 <- read.csv('CAI_Carbone_185_YRC_diff_d.csv')
+explanatory1 <- melt(explanatory1, id.vars = "gene", variable.name = "strain", value.name = "CAI")
+dataset$CAI <- explanatory1$CAI
+```
+
+##### Summary Results of Mixed Model
+``` {r CAIt1}
+lmm1 <- lmer(logPPR ~ CAI + (1+CAI|gene), data=dataset, REML = FALSE, control = lmerControl(optimizer="bobyqa", optCtrl=list(maxfun=1e5)))
+summary(lmm1)
+```
+
+##### Fixed Effects Slope Significance Results
+``` {r CAIt2}
+lmm2 <- lmer(logPPR ~ (1+CAI|gene), data=dataset, REML = FALSE, control = lmerControl(optimizer="bobyqa", optCtrl=list(maxfun=1e5)))
+anova(lmm1, lmm2)
+```
+
+##### Diagnostic Plots
+``` {r CAIt3, fig.align='center', fig.height=10, fig.width=10}
+par(mfrow=c(2,2))
+res = residuals(lmm1)
+
+scatter.smooth(fitted(lmm1), res, col='slateblue', span=0.1, xlab='Fitted Values', ylab='Residuals')
+scatter.smooth(dataset$CAI, res, col='slateblue', span=0.1, xlab='CAI (Carbone)', ylab='Residuals')
+qqnorm(res, col='slateblue')
+qqline(res)
+hist(res, main='', xlab='Residuals', ylab='Frequency', col='slateblue')
+```
+
+
+
+
+
+#### Length-Normalized Codon Adaptation Index (nlCAI) {.tabset .tabset-dropdown}
+##### Menu
+##### Read in Data
+```{r nlCAIt0}
+explanatory2 <- read.csv('nlCAI_185_YRC_diff_d.csv')
+explanatory2 <- melt(explanatory2, id.vars = "gene", variable.name = "strain", value.name = "nlCAI")
+dataset$nlCAI <- explanatory2$nlCAI
+```
+
+##### Summary Results of Mixed Model
+``` {r nlCAIt1}
+lmm3 <- lmer(logPPR ~ nlCAI + (1+nlCAI|gene), data=dataset, REML = FALSE, control = lmerControl(optimizer="bobyqa", optCtrl=list(maxfun=1e5)))
+summary(lmm3)
+```
+
+##### Fixed Effects Slope Significance Results
+``` {r nlCAIt2}
+lmm4 <- lmer(logPPR ~ (1+nlCAI|gene), data=dataset, REML = FALSE, control = lmerControl(optimizer="bobyqa", optCtrl=list(maxfun=1e5)))
+anova(lmm3, lmm4)
+```
+
+##### Diagnostic Plots
+``` {r nlCAIt3, fig.align='center', fig.height=10, fig.width=10}
+par(mfrow=c(2,2))
+res = residuals(lmm3)
+
+scatter.smooth(fitted(lmm3), res, col='salmon', span=0.1, xlab='Fitted Values', ylab='Residuals')
+scatter.smooth(dataset$nlCAI, res, col='salmon', span=0.1, xlab='nlCAI', ylab='Residuals')
+qqnorm(res, col='salmon')
+qqline(res)
+hist(res, main='', xlab='Residuals', ylab='Frequency', col='salmon')
+```
+
+
+
+
+
+#### tRNA Adaptation Index (tAI) {.tabset .tabset-dropdown}
+##### Menu
+##### Read in Data
+```{r tAIt0}
+explanatory3 <- read.csv('tAI_185_YRC_diff_d.csv')
+explanatory3 <- melt(explanatory3, id.vars = "gene", variable.name = "strain", value.name = "tAI")
+dataset$tAI <- explanatory3$tAI
+```
+
+##### Summary Results of Model
+``` {r StAIt1}
+lmm5 <- lmer(logPPR ~ tAI + (1+tAI|gene), data=dataset, REML = FALSE, control = lmerControl(optimizer="bobyqa", optCtrl=list(maxfun=1e5)))
+summary(lmm5)
+```
+
+##### Fixed Effects Slope Significance Results
+``` {r tAIt2}
+lmm6 <- lmer(logPPR ~ (1+tAI|gene), data=dataset, REML = FALSE, control = lmerControl(optimizer="bobyqa", optCtrl=list(maxfun=1e5)))
+anova(lmm5, lmm6)
+```
+
+##### Diagnostic Plots
+``` {r StAIt3, fig.align='center', fig.height=10, fig.width=10}
+par(mfrow=c(2,2))
+res = residuals(lmm5)
+
+scatter.smooth(fitted(lmm5), res, col='yellowgreen', span=0.1, xlab='Fitted Values', ylab='Residuals')
+scatter.smooth(dataset$tAI, res, col='yellowgreen', span=0.1, xlab='tAI', ylab='Residuals')
+qqnorm(res, col='yellowgreen')
+qqline(res)
+hist(res, main='', xlab='Residuals', ylab='Frequency', col='yellowgreen')
+```
+
+
+
+
+
+#### Normalized tRNA Adaptation Index (ntAI) {.tabset .tabset-dropdown}
+##### Menu
+##### Read in Data
+```{r ntAIt0}
+explanatory4 <- read.csv('ntAI_185_YRC_diff_d.csv')
+explanatory4 <- melt(explanatory4, id.vars = "gene", variable.name = "strain", value.name = "ntAI")
+dataset$ntAI <- explanatory4$ntAI
+```
+
+##### Summary Results of Model
+``` {r ntAIt1}
+lmm7 <- lmer(logPPR ~ ntAI + (0+ntAI|gene), data=dataset, REML = FALSE, control = lmerControl(optimizer="bobyqa", optCtrl=list(maxfun=1e5)))
+summary(lmm7)
+```
+
+##### Fixed Effects Slope Significance Results
+``` {r ntAIt2}
+lmm8 <- lmer(logPPR ~ (0+ntAI|gene), data=dataset, REML = FALSE, control = lmerControl(optimizer="bobyqa", optCtrl=list(maxfun=1e5)))
+anova(lmm7, lmm8)
+```
+
+##### Diagnostic Plots
+``` {r ntAIt3, fig.align='center', fig.height=10, fig.width=10}
+par(mfrow=c(2,2))
+res = residuals(lmm7)
+
+scatter.smooth(fitted(lmm7), res, col='peru', span=0.1, xlab='Fitted Values', ylab='Residuals')
+scatter.smooth(dataset$ntAI, res, col='peru', span=0.1, xlab='ntAI', ylab='Residuals')
+qqnorm(res, col='peru')
+qqline(res)
+hist(res, main='', xlab='Residuals', ylab='Frequency', col='peru')
+```

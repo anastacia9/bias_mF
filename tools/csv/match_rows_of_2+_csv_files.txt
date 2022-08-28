@@ -1,0 +1,27 @@
+import pandas
+
+df_tai = pandas.read_csv('tAI_1620_YRC_diff_d.csv', index_col = 0)
+df_cds = pandas.read_csv('CDS_struc_frac_30C_G_1454.csv', index_col = 0)
+df_ut5 = pandas.read_csv('UT5_struc_frac_30C_G_1355.csv', index_col = 0)
+df_ut3 = pandas.read_csv('UT3_struc_frac_30C_G_1402.csv', index_col = 0)
+
+name_tai = list(df_tai.index)
+name_cds = list(df_cds.index)
+name_ut5 = list(df_ut5.index)
+name_ut3 = list(df_ut3.index)
+
+temp0  = set(name_tai).intersection(name_cds)
+temp1  = set(name_ut5).intersection(name_ut3)
+mylist = set(temp0).intersection(temp1)
+
+ppr = pandas.read_csv('n_PPR_1620_d.csv', index_col=0)
+
+count = 0
+for i in ppr.index:
+ if i not in mylist:
+  ppr = ppr.drop(i)
+  count += 1
+
+ppr.to_csv('n_PPR_1312_d.csv')
+
+

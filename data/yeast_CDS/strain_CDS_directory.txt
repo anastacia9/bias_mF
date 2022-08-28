@@ -1,0 +1,24 @@
+strain name    location isolated   source      strain type    DNA   RNA   protein   metabolite   morphology
+
+273614N        Newcastle, UK       fecal       clinical       yes   yes   yes       yes          yes
+378604X        Newcastle, UK       sputum      clinical       yes   yes   yes       NO           yes
+BC187          Napa Valley, CA     barrel      fermentation   yes   yes   yes       yes          yes
+DBVPG1106      Australia           grapes      fermentation   yes   yes   yes       yes          yes
+DBVPG1373      Netherlands         soil        wild           yes   yes   yes       yes          yes
+DBVPG6765      unknown             -           -              yes   yes   yes       yes          yes
+L_1374         Chile               must        fermentation   yes   yes   yes       yes          yes
+NCYC361        Ireland             wort        fermentation   yes   yes   yes       yes          yes
+SK1            USA                 soil        lab            yes   yes   yes       yes          yes
+UWOPS05_217_3  Malaysia            plant       wild           yes   yes   yes       yes          yes
+UWOPS05_227_2  Malaysia            bee         wild           yes   yes   yes       yes          yes
+UWOPS83_787_3  Bahamas             fruit       wild           yes   yes   yes       yes          yes
+UWOPS87_2421   Hawaii              plant       wild           yes   yes   yes       yse          yes
+Y12            Africa              palm wine   fermentation   yes   yes   yes       yes          yes
+Y55            France              grape       lab            yes   yes   yes       yes          yes
+YJM975         Bergamo, Italy      vaginal     clinical       yes   yes   yes       yes          yes
+YJM978         Bergamo, Italy      vaginal     clinical       yes   yes   yes       yes          yes
+YJM981         Bergamo, Italy      vaginal     clinical       yes   yes   yes       yes          yes
+YPS128         Pennsylvania        oak tree    wild           yes   yes   yes       yes          yes
+YPS606         Pennsylvania        oak tree    wild           yes   yes   yes       yes          yes
+YS2            Australia           -           baking         yes   yes   yes       yes          yes
+YS9            Singapore           -           baking         yes   yes   yes       yes          yes

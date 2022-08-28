@@ -1,0 +1,22 @@
+import numpy
+
+strains = numpy.array(['273614N', '378604X', 'BC187', 'DBVPG1106', 'DBVPG1373', 'DBVPG6765', 'L_1374', 'NCYC361', 'SK1', 'UWOPS05_217_3', 'UWOPS05_227_2', 'UWOPS83_787_3', 'UWOPS87_2421', 'Y12', 'Y55', 'YJM975', 'YJM978', 'YJM981', 'YPS128', 'YPS606', 'YS2', 'YS9'])
+num_strains = len(strains)
+benchmark = numpy.genfromtxt('273614N_mRNA.fa', dtype='str', delimiter='\n')
+benchmark_names = benchmark[0::2]
+benchmark_seqs = benchmark[1::2]
+benchmark_num = len(benchmark_seqs)
+
+lengths = numpy.zeros(benchmark_num)
+for i in range(0, benchmark_num):
+ lengths[i] = len(benchmark_seqs[i])
+
+keep_lengths = numpy.where(lengths < 2500)[0]
+
+for i in range(0, num_strains):
+ new = numpy.ndarray( 2*len(keep_lengths), dtype='U30000' )
+ data = numpy.genfromtxt(strains[i] + '_mRNA.fa', dtype='str', delimiter='\n')
+ new[0::2] = data[0::2][keep_lengths]
+ new[1::2] = data[1::2][keep_lengths]
+ numpy.savetxt(strains[i] + '_mRNA_1191.fa', new, fmt="%s")
+
