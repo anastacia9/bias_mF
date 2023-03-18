@@ -1,0 +1,151 @@
+---
+title: "sqrtPPR as a function of tAI and the deltaG of a small CDS region"
+date: "03/15/2023"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r libraries, message=FALSE, warning=FALSE}
+library(car)
+library(lme4)
+library(reshape2)
+```
+
+
+#### sqrtPPR ~ tAI + one-fourth CDS deltaG + interactions {.tabset .tabset-dropdown}
+##### Menu
+##### Define the response variable, sqrtPPR.
+```{r response_variable}
+response <- read.csv("n_PPR_1322_d.csv")
+dataset <- melt(response, id.vars = "gene", variable.name = "strain", value.name = "PPR")
+dataset$sqrtPPR <- sqrt(dataset$PPR)
+```
+
+##### Read in 1/4 CDS deltaG Data
+```{r a}
+explanatory0 <- read.csv('results_onefourth_CDS_40_1322.csv')
+explanatory0 <- melt(explanatory0, id.vars = "gene", variable.name = "strain", value.name = "onefour")
+dataset$onefour = explanatory0$onefour/1000
+```
+
+##### Read in tAI Data
+```{r d}
+explanatory3 <- read.csv('tAI_1322_YRC_diff_d.csv')
+explanatory3 <- melt(explanatory3, id.vars = "gene", variable.name = "strain", value.name = "tAI")
+dataset$tAI = explanatory3$tAI
+```
+
+#include median protein abundance for each gene
+```{r pa}
+explanatory4 <- read.csv('PA_medians_1322.csv')
+explanatory4 <- melt(explanatory4, id.vars = "gene", variable.name = "strain", value.name = "medianPA")
+dataset$medianPA = explanatory4$medianPA/10000
+head(dataset)
+```
+
+##### Summary Results of Mixed Model
+``` {r F1}
+lmm0 <- lmer(sqrtPPR ~ tAI + onefour + tAI:onefour + (0+tAI|gene) + (0+onefour|gene) + (0+tAI|medianPA) + (0+onefour|medianPA) + (1|medianPA), data=dataset, REML = FALSE, control = lmerControl(optimizer="bobyqa", optCtrl=list(maxfun=1e5)))
+summary(lmm0)
+```
+
+##### 95% Confidence Intervals
+``` {r F1confint}
+confint(lmm0, parm="tAI", level=0.95)
+confint(lmm0, parm="onefour", level=0.95)
+confint(lmm0, parm="tAI:onefour", level=0.95)
+```
+
+
+
+#### sqrtPPR ~ tAI + one-half CDS deltaG + interactions {.tabset .tabset-dropdown}
+##### Menu
+##### Define the response variable, sqrtPPR.
+```{r response_variable2}
+response <- read.csv("n_PPR_1313_d.csv")
+dataset <- melt(response, id.vars = "gene", variable.name = "strain", value.name = "PPR")
+dataset$sqrtPPR <- sqrt(dataset$PPR)
+```
+
+##### Read in 1/2 CDS deltaG Data
+```{r a2}
+explanatory0 <- read.csv('results_onehalf_CDS_40_1313.csv')
+explanatory0 <- melt(explanatory0, id.vars = "gene", variable.name = "strain", value.name = "onehalf")
+dataset$onehalf = explanatory0$onehalf/1000
+```
+
+
+##### Read in tAI Data
+```{r d2}
+explanatory3 <- read.csv('tAI_1313_YRC_diff_d.csv')
+explanatory3 <- melt(explanatory3, id.vars = "gene", variable.name = "strain", value.name = "tAI")
+dataset$tAI = explanatory3$tAI
+```
+
+#include median protein abundance for each gene
+```{r pa2}
+explanatory4 <- read.csv('PA_medians_1313.csv')
+explanatory4 <- melt(explanatory4, id.vars = "gene", variable.name = "strain", value.name = "medianPA")
+dataset$medianPA = explanatory4$medianPA/10000
+head(dataset)
+```
+
+##### Summary Results of Mixed Model
+``` {r F12}
+lmm0 <- lmer(sqrtPPR ~ tAI + onehalf + tAI:onehalf + (0+tAI|gene) + (0+tAI|medianPA) + (0+onehalf|medianPA) + (1|medianPA), data=dataset, REML = FALSE, control = lmerControl(optimizer="Nelder_Mead", optCtrl=list(maxfun=1e5)))
+summary(lmm0)
+```
+##### 95% Confidence Intervals
+``` {r F1confint2}
+confint(lmm0, parm="tAI", level=0.95)
+confint(lmm0, parm="onehalf", level=0.95)
+confint(lmm0, parm="tAI:onehalf", level=0.95)
+```
+
+#### sqrtPPR ~ tAI + three-fourth CDS deltaG  + interactions {.tabset .tabset-dropdown}
+##### Menu
+##### Define the response variable, sqrtPPR.
+```{r response_variable3}
+response <- read.csv("n_PPR_1314_d.csv")
+dataset <- melt(response, id.vars = "gene", variable.name = "strain", value.name = "PPR")
+dataset$sqrtPPR <- sqrt(dataset$PPR)
+```
+
+##### Read in 3/4 CDS deltaG Data
+```{r a3}
+explanatory0 <- read.csv('results_threefourth_CDS_40_1314.csv')
+explanatory0 <- melt(explanatory0, id.vars = "gene", variable.name = "strain", value.name = "threefour")
+dataset$threefour = explanatory0$threefour/1000
+```
+
+
+##### Read in tAI Data
+```{r d3}
+explanatory3 <- read.csv('tAI_1314_YRC_diff_d.csv')
+explanatory3 <- melt(explanatory3, id.vars = "gene", variable.name = "strain", value.name = "tAI")
+dataset$tAI = explanatory3$tAI
+```
+
+#include median protein abundance for each gene
+```{r pa3}
+explanatory4 <- read.csv('PA_medians_1314.csv')
+explanatory4 <- melt(explanatory4, id.vars = "gene", variable.name = "strain", value.name = "medianPA")
+dataset$medianPA = explanatory4$medianPA/10000
+head(dataset)
+```
+
+##### Summary Results of Mixed Model
+``` {r F13}
+lmm0 <- lmer(sqrtPPR ~ tAI + threefour + tAI:threefour + (0+tAI:threefour|gene) + (1|gene) + (0+tAI|medianPA) + (1|medianPA), data=dataset, REML = FALSE, control = lmerControl(optimizer="Nelder_Mead", optCtrl=list(maxfun=1e5)))
+summary(lmm0)
+```
+
+##### 95% Confidence Intervals
+``` {r F1confint3}
+confint(lmm0, parm="tAI", level=0.95)
+confint(lmm0, parm="threefour", level=0.95)
+confint(lmm0, parm="tAI:threefour", level=0.95)
+```

@@ -1,0 +1,78 @@
+---
+title: "logPPR as a function of tAI, 5'UTR, CDS, 3'UTR deltaG, and their interactions"
+date: "3/15/2023"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r libraries, message=FALSE, warning=FALSE}
+library(car)
+library(lme4)
+library(reshape2)
+```
+
+
+#### logPPR ~ tAI + 5'UTR deltaG + CDS deltaG + 3'UTR deltaG + all pairwise interactions{.tabset .tabset-dropdown}
+##### Menu
+##### Define the response variable, logPPR.
+```{r response_variable}
+response <- read.csv("n_PPR_1312_d.csv")
+dataset <- melt(response, id.vars = "gene", variable.name = "strain", value.name = "PPR")
+dataset$logPPR <- log(dataset$PPR)
+```
+
+##### Read in 5'UTR deltaG Data
+```{r a}
+explanatory0 <- read.csv('UT5_struc_frac_30C_G_1312.csv')
+explanatory0 <- melt(explanatory0, id.vars = "gene", variable.name = "strain", value.name = "UTR5")
+dataset$UTR5 = explanatory0$UTR5/1000/10 #multiply resulting slope by 100 to get units of 1/(Mcal per mol)
+```
+
+##### Read in CDS deltaG Data
+```{r b}
+explanatory1 <- read.csv('CDS_struc_frac_30C_G_1312.csv')
+explanatory1 <- melt(explanatory1, id.vars = "gene", variable.name = "strain", value.name = "CDS")
+dataset$CDS = explanatory1$CDS/1000/100 #multiply resulting slope by 10 to get units of 1/(Mcal per mol)
+```
+
+##### Read in 3'UTR deltaG Data
+```{r c}
+explanatory2 <- read.csv('UT3_struc_frac_30C_G_1312.csv')
+explanatory2 <- melt(explanatory2, id.vars = "gene", variable.name = "strain", value.name = "UTR3")
+dataset$UTR3 = explanatory2$UTR3/1000/10 #multiply resulting slope by 100 to get units of 1/(Mcal per mol)
+```
+
+##### Read in tAI Data
+```{r d}
+explanatory3 <- read.csv('tAI_1312_YRC_diff_d.csv')
+explanatory3 <- melt(explanatory3, id.vars = "gene", variable.name = "strain", value.name = "tAI")
+dataset$tAI = explanatory3$tAI
+```
+
+#include median protein abundance for each gene
+```{r pa}
+explanatory4 <- read.csv('PA_medians_1312.csv')
+explanatory4 <- melt(explanatory4, id.vars = "gene", variable.name = "strain", value.name = "medianPA")
+dataset$medianPA = explanatory4$medianPA/10000
+head(dataset)
+```
+
+##### Summary Results of Mixed Model
+``` {r F1}
+lmm0 <- lmer(logPPR ~ tAI + UTR5 + CDS + UTR3 + tAI:UTR5 + tAI:CDS + tAI:UTR3 + (0+UTR3|gene) + (1+tAI|medianPA) + (1+UTR5|medianPA) + (1+CDS|medianPA) + (1|medianPA), data=dataset, REML = FALSE, control = lmerControl(optimizer="bobyqa", optCtrl=list(maxfun=1e5)))
+summary(lmm0)
+```
+
+##### 95% Confidence Intervals
+``` {r F1confint}
+confint(lmm0, parm="tAI", level=0.95)
+confint(lmm0, parm="UTR5", level=0.95)
+confint(lmm0, parm="CDS", level=0.95)
+confint(lmm0, parm="UTR3", level=0.95)
+confint(lmm0, parm="tAI:UTR5", level=0.95)
+confint(lmm0, parm="tAI:CDS", level=0.95)
+confint(lmm0, parm="tAI:UTR3", level=0.95)
+```

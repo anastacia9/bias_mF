@@ -1,0 +1,141 @@
+---
+title: "tAI vs. sqrtPPR analyses for genes ranked by low and high deltaG"
+subtitle: "1447 genes, each with one or more alleles across 22 strains"
+output:
+  html_document: default
+  pdf_document: default
+date: "03/15/2023"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r libraries, message=FALSE, warning=FALSE}
+library(car)
+library(lme4)
+library(reshape2)
+```
+
+### Analysis of Lowly Folded Genes
+Define the response variable.
+```{r response_variable0}
+response <- read.csv('n_PPR_723_d_lowG.csv')
+dataset <- melt(response, id.vars = "gene", variable.name = "strain", value.name = "PPR")
+dataset$sqrtPPR <- sqrt(dataset$PPR)
+```
+
+#### tAI {.tabset .tabset-dropdown}
+##### Menu
+##### Read in Data
+```{r tAI_low_G0}
+explanatory0 <- read.csv('tAI_723_YRC_diff_d_lowG.csv')
+explanatory0 <- melt(explanatory0, id.vars = "gene", variable.name = "strain", value.name = "tAI_low_G")
+dataset$tAI_low_G <- explanatory0$tAI_low_G*10 #multiply resulting slope by 10 to get back to original scaling
+```
+
+#include median protein abundance for each gene
+```{r pa_low}
+explanatory1 <- read.csv('PA_medians_723_lowG.csv')
+explanatory1 <- melt(explanatory1, id.vars = "gene", variable.name = "strain", value.name = "medianPA")
+dataset$medianPA = explanatory1$medianPA/10000
+head(dataset)
+```
+
+##### Summary Results of Mixed Model
+``` {r tAI_low_G1}
+lmm0 <- lmer(sqrtPPR ~ tAI_low_G + (1+tAI_low_G|gene) + (1+tAI_low_G|medianPA), data=dataset, REML = FALSE, control = lmerControl(optimizer="bobyqa", optCtrl=list(maxfun=1e5)))
+summary(lmm0)
+```
+
+##### Fixed Effects Slope Significance Results
+``` {r tAI_low_G2}
+lmm1 <- lmer(sqrtPPR ~ (1+tAI_low_G|gene) + (1+tAI_low_G|medianPA), data=dataset, REML = FALSE, control = lmerControl(optimizer="bobyqa", optCtrl=list(maxfun=1e5)))
+lowG<-anova(lmm0, lmm1)
+lowG
+```
+
+##### p-value
+``` {r tAI_low_G2p}
+lowG[2,8]
+```
+
+##### 95% Confidence Interval of Mixed Model
+``` {r tAI_low_G3}
+confint(lmm0, parm="tAI_low_G", level=0.95)
+```
+
+##### Diagnostic Plots
+``` {r tAI_low_G4, fig.align='center', fig.height=10, fig.width=10}
+par(mfrow=c(2,2))
+res = residuals(lmm0)
+
+scatter.smooth(fitted(lmm0), res, col='slateblue', span=0.1, xlab='Fitted Values', ylab='Residuals')
+scatter.smooth(dataset$tAI_low_G, res, col='slateblue', span=0.1, xlab='tAI of low deltaG genes', ylab='Residuals')
+qqnorm(res, col='slateblue')
+qqline(res)
+hist(res, main='', xlab='Residuals', ylab='Frequency', col='slateblue')
+```
+
+
+
+### Analysis of Highly Folded Genes
+Define the response variable.
+```{r response_variable2}
+response <- read.csv('n_PPR_724_d_highG.csv')
+dataset <- melt(response, id.vars = "gene", variable.name = "strain", value.name = "PPR")
+dataset$sqrtPPR <- sqrt(dataset$PPR)
+```
+
+#### tAI {.tabset .tabset-dropdown}
+##### Menu
+##### Read in Data
+```{r tAI_high_G0}
+explanatory0 <- read.csv('tAI_724_YRC_diff_d_highG.csv')
+explanatory0 <- melt(explanatory0, id.vars = "gene", variable.name = "strain", value.name = "tAI_high_G")
+dataset$tAI_high_G <- explanatory0$tAI_high_G
+```
+
+#include median protein abundance for each gene
+```{r pa_high}
+explanatory1 <- read.csv('PA_medians_724_highG.csv')
+explanatory1 <- melt(explanatory1, id.vars = "gene", variable.name = "strain", value.name = "medianPA")
+dataset$medianPA = explanatory1$medianPA/10000
+head(dataset)
+```
+
+##### Summary Results of Mixed Model
+``` {r tAI_high_G1}
+lmm0 <- lmer(sqrtPPR ~ tAI_high_G + (1+tAI_high_G|gene) + (1+tAI_high_G|medianPA), data=dataset, REML = FALSE, control = lmerControl(optimizer="bobyqa", optCtrl=list(maxfun=1e5)))
+summary(lmm0)
+```
+
+##### Fixed Effects Slope Significance Results
+``` {r tAI_high_G2}
+lmm1 <- lmer(sqrtPPR ~ (1+tAI_high_G|gene) + (1+tAI_high_G|medianPA), data=dataset, REML = FALSE, control = lmerControl(optimizer="bobyqa", optCtrl=list(maxfun=1e5)))
+highG<-anova(lmm0, lmm1)
+highG
+```
+
+##### p-value
+``` {r tAI_high_G2p}
+highG[2,8]
+```
+
+##### 95% Confidence Interval of Mixed Model
+``` {r tAI_high_G3}
+confint(lmm0, parm="tAI_high_G", level=0.95)
+```
+
+##### Diagnostic Plots
+``` {r tAI_high_G4, fig.align='center', fig.height=10, fig.width=10}
+par(mfrow=c(2,2))
+res = residuals(lmm0)
+
+scatter.smooth(fitted(lmm0), res, col='slateblue', span=0.1, xlab='Fitted Values', ylab='Residuals')
+scatter.smooth(dataset$tAI_high_G, res, col='slateblue', span=0.1, xlab='tAI of high deltaG genes', ylab='Residuals')
+qqnorm(res, col='slateblue')
+qqline(res)
+hist(res, main='', xlab='Residuals', ylab='Frequency', col='slateblue')
+```
+

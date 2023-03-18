@@ -1,0 +1,433 @@
+########## Figure 2A (1620 genes) ########## 
+logPPR ~ CAI + (1+CAI|gene)  ##1.31202e-17
+##
+##                 Fixed Effects Slope    2.5%          97.5%
+##CAI              0.9029                 0.6944614     1.116135     (R slope was not scaled)
+
+logPPR ~ nlCAI + (1+nlCAI|gene) ##3.604348e-17
+##
+##                 Fixed Effects Slope    2.5%          97.5%
+##nlCAI            0.89357                0.6843556     1.10776      (R slope was not scaled)
+
+logPPR ~ tAI + (1+tAI|gene) ##1.415491e-22
+##
+##                 Fixed Effects Slope    2.5%          97.5%
+##tAI              1.81833                1.451364      2.190553     (R slope was not scaled)
+
+logPPR ~ ntAI + (1+ntAI|gene) ##4.842717e-13
+##
+##                 Fixed Effects Slope    2.5%          97.5%
+##ntAI             2.35950                1.722285      2.999592     (R slope was not scaled)
+
+
+########## Figure 2B (1458 genes) ########## 
+logPPR ~ optimalG + (1+optimalG|gene)  ##2.534e-11
+##
+##                 Fixed Effects Slope    2.5%          97.5%
+##optimalG        -0.44201               -0.5724468    -0.3129687    (R slope was scaled by 1/10)
+
+logPPR ~ ensembleG + (1+ensembleG|gene)  ##5.957e-13
+##
+##                 Fixed Effects Slope    2.5%          97.5%
+##ensembleG       -0.47902               -0.6101608    -0.3495062    (R slope was scaled by 1/10)
+
+logPPR ~ bp_prob + (1+bp_prob|gene)  ##0.004053
+##
+##                 Fixed Effects Slope    2.5%          97.5%
+##bp_prob          0.27964                0.08908466    0.4706235    (R slope was not scaled)
+
+
+########## Figure 2C ########## 
+logPPR ~ tAI + (1+tAI|gene)  #1620 genes  ##1.415491e-22
+##
+##                 Fixed Effects Slope    2.5%          97.5%
+##tAI              1.81833                1.451364      2.190553     (R slope was not scaled)
+
+logPPR ~ tAI + (1+tAI|gene)  #185 genes  ##1.606735e-05
+##
+##                 Fixed Effects Slope    2.5%          97.5%
+##tAI              1.6198                 0.8903339     2.388636     (R slope was not scaled)
+
+logPPR ~ tAI + (1+tAI|gene)  #810 genes (high medianPA)  ##2.749693e-09
+##
+##                  Fixed Effects Slope    2.5%          97.5%
+## tAI              1.07167                0.7201984     1.427608    (R slope was not scaled)
+
+logPPR ~ tAI + (1+tAI|gene)  #810 genes (low medianPA)  ##0.61862
+##
+##                  Fixed Effects Slope    2.5%          97.5%
+## tAI             -0.09608               -0.4716454     0.2855627    (R slope was not scaled)
+
+logPPR ~ tAI + (0+tAI|gene) + (1+tAI|medianPA)  #1620 genes  ##1.168743e-22
+##
+##                  Fixed Effects Slope    2.5%          97.5%
+## tAI              1.82131                1.453685      2.192472     (R slope was not scaled)
+
+
+########## Figure 2D ########## 
+logPPR ~ ensembleG + (1+ensembleG|gene) #1458 genes  ##5.957e-13
+##
+##                 Fixed Effects Slope    2.5%          97.5%
+##ensembleG       -0.47902               -0.6101608    -0.3495062    (R slope was scaled by 1/10)
+
+logPPR ~ ensembleG + (1+ensembleG|gene) #176 genes  ##0.0008163
+##
+##                 Fixed Effects Slope    2.5%          97.5%
+##ensembleG       -1.103470              -1.732711     -0.4639393    (R slope was scaled by 1/10)
+
+logPPR ~ ensembleG + (1+ensembleG|gene)  #729 genes (high medianPA)  ##1.638e-10
+##
+##                  Fixed Effects Slope    2.5%          97.5%
+## ensembleG       -0.47005               -0.6111058    -0.3294906     (R slope was not scaled)
+
+logPPR ~ ensembleG + (1+ensembleG|gene)  #729 genes (low medianPA)  ##0.0004287
+##
+##                  Fixed Effects Slope    2.5%          97.5%
+## ensembleG       -0.10575               -0.1548062    -0.04939935    (R slope was not scaled)
+
+logPPR ~ ensembleG + (1+ensembleG|gene) + (0+ensembleG|medianPA)  #1458 genes  ##5.821e-13
+##
+##                  Fixed Effects Slope    2.5%          97.5%
+## ensembleG       -0.480237              -0.6117192    -0.3504163      (R slope was scaled by 1/10)
+
+
+
+
+########## Figure 3A ########## 
+###### Low deltaG genes (723 genes - low folded) ###### 
+logPPR ~ tAI_low_G + (1+tAI_low_G|gene) + (1+tAI_low_G|medianPA)  ##1.678177e-20
+##
+##                 Fixed Effects Slope    2.5%          97.5%
+##tAI_low_G        2.8089                 2.213738      3.417539   (R slope was not scaled)
+
+###### High deltaG genes (#724 genes - high folded) ###### 
+logPPR ~ tAI_high_G + (1+tAI_high_G|gene) + (1+tAI_high_G|medianPA) ##8.150595e-06
+##
+##                 Fixed Effects Slope    2.5%          97.5%
+##tAI_high_G       0.99548                0.5589972     1.436092   (R slope was not scaled)
+
+
+########## Figure 3B ########## 
+###### Low tAI genes (723 genes - low bias) ######
+logPPR ~ deltaG_low_tAI + (1|medianPA)  ##6.855e-12
+##
+##                 Fixed Effects Slope    2.5%          97.5%
+##deltaG_low_tAI  -0.181495              -0.2333098    -0.1296911   (R slope was scaled by 1/10)
+
+###### High tAI genes (724 genes - high bias) ######
+logPPR ~ deltaG_high_tAI + (1+deltaG_high_tAI|medianPA)  ##1.457e-09
+##
+##                 Fixed Effects Slope    2.5%          97.5%
+##deltaG_high_tAI -0.670951              -0.8827687    -0.4589574   (R slope was scaled by 1/10)
+
+
+########## Figure 3C (1447 genes) ########## 
+logPPR ~ tAI + ensembleG + tAI:ensembleG + (0+ensembleG|gene) + (0+tAI:ensembleG|gene) + (0+tAI|medianPA) + (0+tAI:ensembleG|medianPA) + (1|medianPA)  ##6.847804e-33
+##
+##                  Fixed Effects Slope    2.5%          97.5%
+## tAI              0.4276                -0.08658498    0.9418283  (R slope was not scaled)
+## ensembleG        0.49254                0.03401753    0.9474565  (R slope was scaled by 1/10)
+## tAI:ensembleG   -2.33043               -3.380917     -1.276193   (R slope was scaled by 1/10)
+
+
+
+
+########## Figure 4A (983 genes) ########## 
+logPPR ~ tAI + ensembleG + tAI:ensembleG + (0+tAI:ensembleG|gene) + (0+tAI|medianPA) + (0+ensembleG|medianPA) + (0+tAI:ensembleG|medianPA) + (1|medianPA)
+##
+##                  Fixed Effects Slope    2.5%          97.5%
+## L5tAI            0.07675               -0.2713433     0.4330731    (R slope was not scaled)
+## ensembleG       -0.366213              -0.676368     -0.05925087   (R slope was scaled by 1/10)
+## L5tAI:ensembleG -0.030410              -0.7180531     0.6621573    (R slope was scaled by 1/10)
+
+
+########## Figure 4B (983 genes) ########## 
+logPPR ~ tAI + ensembleG + tAI:ensembleG + (0+ensembleG|gene) + (0+tAI:ensembleG|gene) + (0+tAI|medianPA) + (0+ensembleG|medianPA) + (0+tAI:ensembleG|medianPA) + (1|medianPA)
+##
+##                  Fixed Effects Slope    2.5%          97.5%
+## d3tAI           -0.1486                -0.7664056     0.4702343   (R slope was not scaled)
+## ensembleG        0.93052                0.4546875     1.402456    (R slope was scaled by 1/10)
+## d3tAI:ensembleG -3.20665               -4.29844      -2.111606    (R slope was scaled by 1/10)
+
+
+########## Figure 4C (1312 genes) ########## 
+logPPR ~ tAI + CDS + UTR5 + UTR3 + CDS:UTR5 + CDS:UTR3 + UTR5:UTR3 + tAI:CDS + tAI:UTR5 + tAI:UTR3 + tAI:CDS:UTR5 + tAI:CDS:UTR3 + tAI:UTR5:UTR3 + (0+tAI|gene)+ (0+CDS|medianPA) + (0+UTR3|medianPA) + (1|medianPA)
+##
+##                  Fixed Effects Slope    2.5%          97.5%
+## tAI              0.73774                0.0663799     1.416399    (R slope was not scaled)
+## UTR5             10.173                -6.050178      26.52215    (R slope was scaled by 100)
+## CDS              5.8011                 0.2343033     11.33627    (R slope was scaled by 10)
+## UTR3             15.229                -0.3567013     30.67415    (R slope was scaled by 100)
+## tAI:UTR5        -34.146                -72.39338      3.848882    (R slope was scaled by 100)
+## tAI:CDS         -23.5790               -36.56613     -10.51852    (R slope was scaled by 10)
+## tAI:UTR3        -45.766                -81.76674     -9.42296     (R slope was scaled by 100)
+
+
+
+
+########## Figure S2A (1620 genes) ########## 
+sqrtPPR ~ CAI + (1+CAI|gene)  ##3.064256e-11
+##
+##                 Fixed Effects Slope    2.5%          97.5%
+##CAI              17.6295                12.39258      22.98069     (R slope was not scaled)
+
+sqrtPPR ~ nlCAI + (1+nlCAI|gene)  ##7.078965e-11
+##
+##                 Fixed Effects Slope    2.5%          97.5%
+##nlCAI            17.2315                12.01506      22.56631     (R slope was not scaled)
+
+sqrtPPR ~ tAI + (1+tAI|gene)  ##4.887684e-19
+##
+##                 Fixed Effects Slope    2.5%          97.5%
+##tAI              39.277                 30.56147      48.15024     (R slope was not scaled)
+
+sqrtPPR ~ ntAI + (1+ntAI|gene)  ##1.068925e-13
+##
+##                 Fixed Effects Slope    2.5%          97.5%
+##ntAI             53.540                 39.47122      67.71153     (R slope was not scaled)
+
+
+########## Figure S2B (1458 genes) ########## 
+sqrtPPR ~ optimalG + (1+optimalG|gene)  ##2.482e-09
+##
+##                 Fixed Effects Slope    2.5%          97.5%
+##optimalG        -11.0391               -14.6455      -7.436932    (R slope was scaled by 1/10)
+
+sqrtPPR ~ ensembleG + (1+ensembleG|gene)  ##8.474903e-12
+##
+##                 Fixed Effects Slope    2.5%          97.5%
+##ensembleG       -13.089                -16.81145     -9.371116    (R slope was scaled by 1/10)
+
+sqrtPPR ~ bp_prob + (1+bp_prob|gene)  ##0.01396
+##
+##                 Fixed Effects Slope    2.5%          97.5%
+##bp_prob          4.9557                 1.006035      8.918971    (R slope was scaled by 1/10)
+
+
+########## Figure S2C ########## 
+sqrtPPR ~ tAI + (1+tAI|gene)  #1620 genes  ##4.887684e-19
+##
+##                 Fixed Effects Slope    2.5%          97.5%
+##tAI              39.277                 30.56147      48.15024     (R slope was not scaled)
+
+sqrtPPR ~ tAI + (1+tAI|gene)  #185 genes  ##4.925222e-07
+##
+##                 Fixed Effects Slope    2.5%          97.5%
+##tAI              43.918                 27.28993      62.48222     (R slope was not scaled)
+
+sqrtPPR ~ tAI + (1+tAI|gene)  #810 genes (high medianPA)  ##6.993011e-20
+##
+##                  Fixed Effects Slope    2.5%          97.5%
+## tAI              42.697                 29.84677      55.80257    (R slope was not scaled)
+
+sqrtPPR ~ tAI + (1+tAI|gene)  #810 genes (low medianPA)  ##0.5101311
+##
+##                  Fixed Effects Slope    2.5%          97.5%
+## tAI             -2.129                 -8.395679      4.267716    (R slope was not scaled)
+
+sqrtPPR ~ tAI + (1+tAI|medianPA)  #1620 genes  ##3.128402e-19
+##
+##                  Fixed Effects Slope    2.5%          97.5%
+## tAI              39.379                 30.69531      48.22018     (R slope was not scaled)
+
+
+########## Figure S2D ########## 
+sqrtPPR ~ ensembleG + (1+ensembleG|gene)  #1458 genes  ##8.474903e-12
+##
+##                 Fixed Effects Slope    2.5%          97.5%
+##ensembleG       -13.089                -16.81145     -9.371116    (R slope was scaled by 1/10)
+
+sqrtPPR ~ ensembleG + (1+ensembleG|gene)  #176 genes  ##0.001186
+##
+##                 Fixed Effects Slope    2.5%          97.5%
+##ensembleG       -27.6246               -44.56297     -11.08339    (R slope was scaled by 1/10)
+
+sqrtPPR ~ ensembleG + (1+ensembleG|gene)  #729 genes (high medianPA)  ##6.732e-11
+##
+##                  Fixed Effects Slope    2.5%          97.5%
+## ensembleG       -19.205                -24.80765     -13.57606   (R slope was not scaled)
+
+sqrtPPR ~ ensembleG + (1+ensembleG|gene)  #729 genes (low medianPA)  ##0.001143
+##
+##                  Fixed Effects Slope    2.5%          97.5%
+## ensembleG       -1.7618                -2.701975     -0.731258   (R slope was not scaled)
+
+sqrtPPR ~ ensembleG + (1+ensembleG|gene) + (0+ensembleG|medianPA)  #1458 genes  ##8.007e-12
+##
+##                  Fixed Effects Slope    2.5%          97.5%
+## ensembleG       -13.1248               -16.85431     -9.400658   (R slope was scaled by 1/10)
+
+
+
+########## Figure S3A ########## 
+###### Low deltaG genes (723 genes - low folded) ###### 
+sqrtPPR ~ tAI_low_G + (1+tAI_low_G|gene) + (1+tAI_low_G|medianPA)  ##1.08999e-15
+##
+##                 Fixed Effects Slope    2.5%          97.5%
+##tAI_low_G        66.249                 50.11935      82.75412   (R slope was scaled by 10)
+
+###### High deltaG genes (#724 genes - high folded) ###### 
+sqrtPPR ~ tAI_high_G + (1+tAI_high_G|gene) + (1+tAI_high_G|medianPA)  ##7.104283e-05
+##
+##                 Fixed Effects Slope    2.5%          97.5%
+##tAI_high_G       18.986                 9.603971      28.52574   (R slope was not scaled)
+
+
+########## Figure S3B ########## 
+###### Low tAI genes (723 genes - low bias) ######
+sqrtPPR ~ deltaG_low_tAI + (1|medianPA)  ##9.14e-11
+##
+##                 Fixed Effects Slope    2.5%          97.5%
+##deltaG_low_tAI  -3.2311                -4.207548     -2.254631   (R slope was not scaled)
+
+###### High tAI genes (724 genes - high bias) ######
+sqrtPPR ~ deltaG_high_tAI + (1+deltaG_high_tAI|medianPA)  ##1.228e-10
+##
+##                 Fixed Effects Slope    2.5%          97.5%
+##deltaG_high_tAI -22.028                -28.53739     -15.47559   (R slope was not scaled)
+
+
+########## Figure S3C (1447 genes) ########## 
+sqrtPPR ~ tAI + ensembleG + tAI:ensembleG + (0+ensembleG|gene) + (0+tAI:ensembleG|gene) + (0+tAI|medianPA) + (0+tAI:ensembleG|medianPA) + (1|medianPA)  ##6.053291e-27
+##
+##                  Fixed Effects Slope    2.5%          97.5%
+## tAI              11.540                -0.4608708     23.55979   (R slope was not scaled)
+## ensembleG        7.181                 -3.212713      17.49656   (R slope was not scaled)
+## tAI:ensembleG   -48.619                -73.29599     -23.82163   (R slope was not scaled)
+
+
+
+
+########## Figure S4A (983 genes) ########## 
+sqrtPPR ~ tAI + ensembleG + tAI:ensembleG + (0+tAI:ensembleG|gene) + (0+tAI|medianPA) + (0+ensembleG|medianPA) + (1|medianPA)
+##
+##                  Fixed Effects Slope    2.5%          97.5%
+## L5tAI            0.226                 -7.630329      8.507728    (R slope was not scaled)
+## ensembleG       -8.732                 -16.30016     -1.260354    (R slope was not scaled)
+## L5tAI:ensembleG -4.249                 -21.1659       12.94451    (R slope was not scaled)
+
+
+########## Figure S4B (983 genes) ########## 
+sqrtPPR ~ tAI + ensembleG + tAI:ensembleG + (0+tAI:ensembleG|gene) + (0+tAI|medianPA) + (0+ensembleG|medianPA) + (0+tAI:ensembleG|medianPA) + (1|medianPA)
+##
+##                  Fixed Effects Slope    2.5%          97.5%
+## d3tAI            7.194                 -7.758469      22.13131   (R slope was not scaled)
+## ensembleG        12.235                 0.8780141     23.54518   (R slope was not scaled)
+## d3tAI:ensembleG -59.202                -85.78393     -32.53256   (R slope was not scaled)
+
+
+########## Figure S4C (1312 genes) ########## 
+sqrtPPR ~ tAI + UTR5 + CDS + UTR3 + tAI:UTR5 + tAI:CDS + tAI:UTR3 + (0+UTR5|gene) + (0+CDS|gene) + (1|gene) + (0+tAI|medianPA) + (0+UTR5|medianPA) + (0+CDS|medianPA) + (0+UTR3|medianPA) + (1|medianPA)
+##
+##                  Fixed Effects Slope    2.5%          97.5%
+## tAI              4.521                 -8.525435      17.55785    (R slope was not scaled)
+## UTR5             545.38                 181.2241      908.2402    (R slope was scaled by 10)
+## CDS              141.855                26.38428      257.0108    (R slope was not scaled)
+## UTR3             617.36                 268.7016      963.6201    (R slope was scaled by 10)
+## tAI:UTR5        -1502.46               -2351.958     -649.4351    (R slope was scaled by 10)
+## tAI:CDS         -590.759               -861.4847     -319.3644    (R slope was not scaled)
+## tAI:UTR3        -1679.58               -2487.91      -865.0395    (R slope was scaled by 10)
+
+
+
+
+########## Figure S5A (774 genes) ########## 
+logPPR ~ tAI + cap + upA + dwA + dwS + tAI:cap + tAI:upA + tAI:dwA + tAI:dwS + (0+tAI|gene) + (0+cap|gene) + (0+dwA|gene) + (1|gene) + (0+tAI|medianPA) + (0+cap|medianPA) + (0+upA|medianPA) + (0+dwS|medianPA) + (1|medianPA)
+##
+##                  Fixed Effects Slope    2.5%          97.5%
+## tAI              1.18376                0.7777461     1.58883      (R slope was not scaled)
+## cap             -0.007922              -0.05279172    0.03680919   (R slope was scaled by 1/10)
+## upA              0.023663              -0.008454011   0.05528341   (R slope was scaled by 1/10)
+## dwA              0.007334              -0.03167092    0.04635923   (R slope was scaled by 1/10)
+## dwS              0.010647              -0.02231206    0.04402132   (R slope was scaled by 1/10)
+## tAI:cap          0.006682              -0.09633567    0.1099738    (R slope was scaled by 1/10)
+## tAI:upA         -0.050415              -0.1237346     0.02387296   (R slope was scaled by 1/10)
+## tAI:dwA         -0.004292              -0.09426245    0.08569974   (R slope was scaled by 1/10)
+## tAI:dwS         -0.021353              -0.09965037    0.0560494    (R slope was scaled by 1/10)
+
+
+########## Figure S5B (1322 genes) ########## 
+logPPR ~ tAI + onefour + tAI:onefour + (0+tAI|gene) + (0+onefour|gene) + (0+tAI|medianPA) + (0+onefour|medianPA) + (1|medianPA)  #(1/4 CDS)
+##
+##                  Fixed Effects Slope    2.5%          97.5%
+##tAI               1.22779                0.9163791     1.538659      (R slope was not scaled)
+##onefour          -0.004584              -0.02179601    0.01265215    (R slope was scaled by 1/10)
+##tAI:onefour       0.012275              -0.02764065    0.05214875    (R slope was scaled by 1/10)
+
+
+########## Figure S5C (1313 genes) ########## 
+logPPR ~ tAI + onehalf + tAI:onehalf + (0+tAI|gene) + (0+tAI|medianPA) + (0+onehalf|medianPA) + (1|medianPA)  #(1/2 CDS)
+##
+##                  Fixed Effects Slope    2.5%          97.5%
+##tAI               1.142359               0.8343154     1.449903      (R slope was not scaled)
+##onehalf           0.0004438             -0.01790569    0.01863085    (R slope was scaled by 1/10)
+##tAI:onehalf       0.0036589             -0.03849775    0.04621945    (R slope was scaled by 1/10)
+
+
+########## Figure S5D (1314 genes) ########## 
+logPPR ~ tAI + threefour + tAI:threefour + (0+tAI|gene) + (1|gene) + (0+tAI|medianPA) + (0+threefour|medianPA) + (1|medianPA)  #(3/4 CDS)
+##
+##                  Fixed Effects Slope    2.5%          97.5%
+##tAI               1.058362               0.7489351     1.367062      (R slope was not scaled)
+##threefour         0.0008641             -0.0143091     0.01593053    (R slope was scaled by 1/10)
+##tAI:threefour     0.0017578             -0.03318148    0.03697681    (R slope was scaled by 1/10)
+
+
+########## Figure S5E (774 genes) ########## 
+sqrtPPR ~ tAI + cap + upA + dwA + dwS + tAI:cap + tAI:upA + tAI:dwA + tAI:dwS + (0+tAI|gene) + (0+cap|gene) + (0+dwA|gene) + (0+tAI|medianPA) + (0+upA|medianPA) + (0+dwS|medianPA) + (1|medianPA)
+##
+##                  Fixed Effects Slope    2.5%          97.5%
+## tAI              25.9088                15.66316      36.12964    (R slope was not scaled)
+## cap              0.1282                -0.9009163     1.153853    (R slope was not scaled)
+## upA              0.3507                -0.3646782     1.05398     (R slope was not scaled)
+## dwA             -0.4340                -1.36835       0.4995087   (R slope was not scaled)
+## dwS              0.1767                -0.5631844     0.9266684   (R slope was not scaled)
+## tAI:cap         -0.4869                -2.849798      1.882636    (R slope was not scaled)
+## tAI:upA         -0.7588                -2.389838      0.897353    (R slope was not scaled)
+## tAI:dwA          1.2747                -0.8790166     3.43166     (R slope was not scaled)
+## tAI:dwS         -0.3869                -2.148102      1.35082     (R slope was not scaled)
+
+
+########## Figure S5F (1322 genes) ########## 
+sqrtPPR ~ tAI + onefour + tAI:onefour + (0+tAI|gene) + (0+onefour|gene) + (0+tAI|medianPA) + (0+onefour|medianPA) + (1|medianPA)  #(1/4 CDS)
+##
+##                  Fixed Effects Slope    2.5%          97.5%
+##tAI               28.01179               20.38185      35.63292    (R slope was not scaled)
+##onefour          -0.03721               -0.4123678     0.3407687   (R slope was not scaled)
+##tAI:onefour       0.10488               -0.7710173     0.9744156   (R slope was not scaled)
+
+
+########## Figure S5G (1313 genes) ########## 
+sqrtPPR ~ tAI + onehalf + tAI:onehalf + (0+tAI|gene) + (0+tAI|medianPA) + (0+onehalf|medianPA) + (1|medianPA)  #(1/2 CDS)
+##
+##                  Fixed Effects Slope    2.5%          97.5%
+##tAI               27.89310               20.32153      35.44504   (R slope was not scaled)
+##onehalf          -0.01966               -0.4148626     0.371111   (R slope was not scaled)
+##tAI:onehalf       0.14617               -0.76047       1.064062   (R slope was not scaled)
+
+
+########## Figure S5H (1314 genes) ########## 
+sqrtPPR ~ tAI + threefour + tAI:threefour + (0+tAI:threefour|gene) + (1|gene) + (0+tAI|medianPA) + (1|medianPA)  #(3/4 CDS)
+##
+##                  Fixed Effects Slope    2.5%          97.5%
+##tAI               25.79287               18.25938      33.30892   (R slope was not scaled)
+##threefour        -0.06266               -0.4187543     0.2872346  (R slope was not scaled)
+##tAI:threefour     0.24799               -0.5697834     1.082309   (R slope was not scaled)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
